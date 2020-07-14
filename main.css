@@ -1,0 +1,180 @@
+#pagecontainer{
+  margin: 0;
+  padding: 0;
+  float: right;
+  width:100%;
+}
+
+h4{
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+#sidepanelin{
+  z-index: 1;
+  background-color: white;
+  position: fixed;
+  height: 10%;
+  width: 7%;
+  margin-top: 4%;
+}
+
+#sidepanelout{
+  width: 35%;
+  float: right;
+  height: 11%;
+  /*align: center;*/
+  padding-top: 1%;
+}
+
+#logoholder{
+  float: left;
+  align-self: flex-start;
+  margin: 2px 8px;
+}
+
+#logo{
+  width: 130px;
+}
+
+#reverseimg{
+  transform: rotate(180deg);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+}
+
+#toolbox{
+  width: 250px;
+  height:96%;
+  float: left;
+
+  margin-left: 0 ;
+  /*display: flex;*/
+  z-index: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: fixed;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 10px;
+  transition: 0.5s;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+}
+
+#toolscontainer{
+  width:100%;
+  float: left;
+  margin: 1% 1%;
+}
+
+#toolproperties{
+  width: 100%;
+  float: left;
+  margin: 1% 1%;
+}
+
+#linkholder{
+  width: 100%;
+  float: left;
+  margin: 1% 1%;
+}
+
+input{
+  width: 85%;
+  margin: 1% 2%;
+}
+
+
+#actions{
+  width: 100%;
+  float: left;
+  margin-left: 2%;
+}
+
+.action{
+  width: 95%;
+  margin: 1% 1%;
+  float: left;
+  padding: 2%;
+  text-align: center;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.action:hover{
+  background-color: #000;
+  color: white;
+}
+
+#action2:hover{
+  background-color: #e32424;
+  color: white;
+}
+
+#imgtodwnld{
+  width: 240px;
+}
+
+#properties{
+  margin: 1% 2%;
+  float: left;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+}
+
+.tools{
+  /*width: 95%;*/
+  margin: 1% 1%;
+  float: left;
+  padding: 3% 3%;
+  text-align: center;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tools:hover{
+  background-color: #000;
+  color: white;
+}
+
+#pencil{
+
+}
+
+#eraser{
+
+}
+
+#canvas1{
+  /*border: 2px solid black;*/
+  border-radius: 10px;
+  margin:10px;
+  float: right;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#testv{
+  visibility:visible;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height:100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+html{
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+}
