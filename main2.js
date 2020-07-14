@@ -1,12 +1,12 @@
-var pages=[],page_number=0;
-
-//for pages functionality
-function init2() {
+function initi2() {
   if (page_number==0) {
     document.getElementById('action6').visibility="hidden";
   }
 }
 
+
+//for pages functionality start
+var pages=[],page_number=0;
 function new_page() {
   if (pages.length==page_number||pages.length-1==page_number) {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
@@ -43,3 +43,4 @@ function previous_page() {
   //document.getElementById('action5').innerHTML="";
   document.getElementById('action5').innerHTML="Next Page";
 }
+//for page functionality end
