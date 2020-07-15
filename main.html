@@ -8,10 +8,10 @@
     <link rel="icon" href="logoshort.jpg" type="image/jpg">
   </head>
   <body>
-    <div id="sidepanelin" onclick="toggle()"><img src="arrow.svg" width="100%" height="100%"></div>
+    <div id="sidepanelin" onclick="toggle_sidepanel()"><img src="arrow.svg" width="100%" height="100%"></div>
     <div id="toolbox">
-      <div id="logoholder" onclick="toggle()"><!--<a href="https://contentcreator.netlify.app/">--><img id="logo" src="logo.jpg"><!--</a>--></div>
-      <div id="sidepanelout" onclick="toggle()"><img id="reverseimg" align="middle" src="arrow.svg"></div>
+      <div id="logoholder" onclick="toggle_sidepanel()"><!--<a href="https://contentcreator.netlify.app/">--><img id="logo" src="logo.jpg"><!--</a>--></div>
+      <div id="sidepanelout" onclick="toggle_sidepanel()"><img id="reverseimg" align="middle" src="arrow.svg"></div>
         <div id="toolscontainer">
           <h4>Tools</h4>
           <!--<button class="tools" id="pen">Pen</button>-->
@@ -24,7 +24,7 @@
           <h4>Tool Properties</h4>
           <div id="properties">Thickness: <input id="strokewidth"  value="5" type="number" placeholder="For example: 1"></input></div>
           <div id="properties">Color:<input id="strokecolor" value="#ffffff" type="color"></div>
-          <div id="properties">Background Color: <input id="boardcolor" value="#000000" type="color"></div>
+          <div id="properties">Background Color: <input id="boardcolor" value="#1F6953" type="color"></div>
         </div>
         <div id="actions">
           <h4>Actions</h4>
@@ -53,11 +53,9 @@
         <p><a href="www.google.com/chrome">Google Chrome</a></p>
         <p><a href="#"></a></p>
       </canvas>
-      <canvas id="canvasforimage">
-      </canvas>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
-    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script type="text/javascript" src="RecordRTC.min.js"></script>
     <script type="text/javascript" src="videocapture.js"></script>
     <script type="text/javascript" src="main2.js"></script>
     <script type="text/javascript" src="main.js"></script>

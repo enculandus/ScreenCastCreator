@@ -1,9 +1,7 @@
+document.onload = initi2();
 function initi2() {
-  if (page_number==0) {
-    document.getElementById('action6').visibility="hidden";
-  }
-}
 
+} 
 
 //for pages functionality start
 var pages=[],page_number=0;
