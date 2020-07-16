@@ -93,6 +93,7 @@ function locator(event) {
 //drawing functions
 var strok = false;
 function start_draw(event) {
+  event.preventDefault();
   locator(event);
   stroke_properties();
   strok =true;
@@ -111,7 +112,6 @@ function stroke_properties() {
 
 function draw(event) {
   if (!strok){return;}
-  //event.preventDefault();
   cntx.beginPath();
   cntx.moveTo(loc.x,loc.y);
   locator(event);
