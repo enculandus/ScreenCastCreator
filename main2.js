@@ -1,7 +1,7 @@
 document.onload = initi2();
 function initi2() {
 
-} 
+}
 
 //for pages functionality start
 var pages=[],page_number=0;
@@ -42,3 +42,9 @@ function previous_page() {
   document.getElementById('action5').innerHTML="Next Page";
 }
 //for page functionality end
+
+//image download
+function download_img() {
+  var imgdata = canv.toDataURL('imgage/png',1.0);
+  window.open(imgdata);
+}

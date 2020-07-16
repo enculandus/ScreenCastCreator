@@ -17,22 +17,21 @@
           <!--<button class="tools" id="pen">Pen</button>-->
           <button class="tools" id="pencil" onclick="start_pencil()">Pencil</button>
           <button class="tools" id="eraser" onclick="start_eraser()">Eraser</button>
-          <button class="tools" onclick="document.body.requestFullscreen()">Full Screen</button>
+          <button class="tools" onclick="document.body.requestFullscreen();full_screen=true">Full Screen</button>
           <button class="tools" onclick="resize_info()">Resize</button>
         </div>
         <div id="toolproperties">
           <h4>Tool Properties</h4>
           <div id="properties">Thickness: <input id="strokewidth"  value="5" type="number" placeholder="For example: 1"></input></div>
-          <div id="properties">Color:<input id="strokecolor" value="#ffffff" type="color"></div>
-          <div id="properties">Background Color: <input id="boardcolor" value="#1F6953" type="color"></div>
+          <div id="properties">Pencil Color:<input id="strokecolor" value="#ffffff" type="color"></div>
+          <div id="properties">Board Color: <input id="boardcolor" value="#1F6953" type="color"></div>
         </div>
         <div id="actions">
           <h4>Actions</h4>
           <button class="action" id="action1" onclick="clear_page()">Clear Page</button>
           <button class="action" id="action2" onclick="start_recording()">Start Recording</button>
           <button class="action" id="action3" onclick="stop_recording()">Stop Recording</button>
-          <!--<button class="action" id="action4" onclick="download_img()">Download as Image(.png)</button>
-          <img id="imgtodwnld" >-->
+          <button class="action" id="action4" onclick="download_img()">Download as Image(.png)</button>
           <button class="action" id="action5" onclick="new_page()">New Page</button>
           <button class="action" id="action6" onclick="previous_page()">Previous Page</button>
         </div>

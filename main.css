@@ -117,7 +117,9 @@ input{
 }
 
 #imgtodwnld{
-  width: 240px;
+  width: 220px;
+  height: 0;
+  visibility: hidden;
 }
 
 #properties{

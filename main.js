@@ -44,6 +44,7 @@ function board_color() {
   cntx.fillRect(0, 0, canv.width, canv.height);
 }
 
+var full_screen=false;
 function resize() {
     //saving original image
     var original=cntx.getImageData(0,0,canv.width,canv.height);
@@ -54,6 +55,7 @@ function resize() {
     board_color();
     //placing the image back on to this canvas
     cntx.putImageData(original,0,0,0,0,canv.width,canv.height);
+    if(full_screen){document.body.requestFullscreen();}
 }
 
 function resize_info() {
@@ -62,7 +64,7 @@ function resize_info() {
   }
 }
 
-function toggle_sidepanel() {
+async function toggle_sidepanel() {
     if (toolbox.style.width=='0px') {
       toolbox.style.visibility='visible';
       toolbox.style.width='250px';
@@ -92,25 +94,25 @@ function locator(event) {
 
 //drawing functions
 var strok = false;
-function start_draw(event) {
+async function start_draw(event) {
   event.preventDefault();
   locator(event);
   stroke_properties();
   strok =true;
 }
 
-function stop_draw(event) {
+async function stop_draw(event) {
   strok=false;
 }
 
-function stroke_properties() {
+async function stroke_properties() {
   cntx.lineCap = 'round';
   cntx.lineWidth = document.getElementById('strokewidth').value;
   cntx.strokeStyle = document.getElementById('strokecolor').value;
   cntx.lineJoin = 'round';
 }
 
-function draw(event) {
+async function draw(event) {
   if (!strok){return;}
   cntx.beginPath();
   cntx.moveTo(loc.x,loc.y);
