@@ -165,3 +165,24 @@ function start_pencil() {
   document.getElementById('pencil').style.color = "white";
   document.getElementById('pencil').style.backgroundColor = "black";
 }
+
+
+//loadscript function !!!!important for better page rendering!!!!
+async function loadscript(url, location, notifier_id){
+    //url is URL of external file, implementationCode is the code
+    //to be called from the file, location is the location to
+    //insert the <script> element
+    document.getElementById(notifier_id).style.height='20px';
+    document.getElementById(notifier_id).innerHTML="Loading Script.....";
+
+    var scriptTag = document.createElement('script');
+    scriptTag.src = url;
+
+    //scriptTag.onload = implementationCode;
+    //scriptTag.onreadystatechange = implementationCode;
+
+    location.appendChild(scriptTag);
+
+    document.getElementById(notifier_id).innerHTML="";
+    document.getElementById(notifier_id).style.height='0px';
+}

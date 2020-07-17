@@ -45,6 +45,16 @@ function previous_page() {
 
 //image download
 function download_img() {
-  var imgdata = canv.toDataURL('imgage/png',1.0);
-  window.open(imgdata);
+  var canvas_data_image = new Image(230);
+  canvas_data_image.src = canv.toDataURL('imgage/jpeg');
+  document.getElementById('actions').appendChild(canvas_data_image);
+}
+
+//to pdf function
+async function to_pdf() {
+  await loadscript("jspdf.min.js", document.body, 'action7notification');
+  var doc = new jsPDF();
+  var imgdata = canv.toDataURL('imgage/jpeg');
+  doc.addImage(imgdata, "PNG", 15, 40, 180, 180);
+
 }

@@ -168,6 +168,10 @@ input{
   visibility:visible;
 }
 
+#action7notification{
+  height:0;
+}
+
 body{
   margin: 0;
   padding: 0;
