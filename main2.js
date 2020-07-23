@@ -3,19 +3,21 @@ function initi2() {
 
 }
 
-//for pages functionality start
-var pages=[],page_number=0;
+//for pages functionality start (additional array to enable pdf functionality added)
+var pages = [], pages_pdf = [],page_number=0;
 function new_page() {
   if (pages.length==page_number||pages.length-1==page_number) {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
+    pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);
     page_number++;
     clear_page();
     //document.getElementById('action5').innerHTML="New Page";
   }
   else if(pages.length>page_number) {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
+    pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);
     page_number++;
-    cntx.putImageData(pages[page_number],0,0);
+    cntx.putImageData(pages[0][page_number],0,0);
     if ((pages.length-1)==page_number) {
       document.getElementById('action5').innerHTML="New Page";
     }
@@ -26,6 +28,7 @@ function new_page() {
 function previous_page() {
   //automatically saving current page
   pages[page_number]=cntx.getImageData(0,0,canv.width,canv.height);
+  pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);
   //settng up condition for first page error
   if(page_number>=1){
     page_number--;
@@ -45,16 +48,22 @@ function previous_page() {
 
 //image download
 function download_img() {
-  var canvas_data_image = new Image(230);
-  canvas_data_image.src = canv.toDataURL('imgage/jpeg');
-  document.getElementById('actions').appendChild(canvas_data_image);
+  saveAs(canv.toDataURL('image/png'),'drawing.png');
 }
 
 //to pdf function
 async function to_pdf() {
-  await loadscript("jspdf.min.js", document.body, 'action7notification');
-  var doc = new jsPDF();
-  var imgdata = canv.toDataURL('imgage/jpeg');
-  doc.addImage(imgdata, "PNG", 15, 40, 180, 180);
-
+  if(canv.width>canv.height){
+    var doc = new jsPDF("landscape","pt" , "a4");
+  }
+  else{
+    var doc = new jsPDF("portrait","pt" , "a4");
+  }
+  for (var i = 0; i < pages_pdf.length; i++) {
+    doc.addImage(pages_pdf[i],'JPEG',0,0,842,595);
+    console.log(doc.internal.width);
+  }
+  //since the last page is not yet added to the array
+  doc.addImage(canv.toDataURL('image/jpeg',1.0),'JPEG',0,0,842,595);
+  doc.save("yourpdf.pdf");
 }

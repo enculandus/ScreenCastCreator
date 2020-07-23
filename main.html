@@ -31,11 +31,10 @@
           <button class="action" id="action1" onclick="clear_page()">Clear Page</button>
           <button class="action" id="action2" onclick="start_recording()">Start Recording</button>
           <button class="action" id="action3" onclick="stop_recording()">Stop Recording</button>
+          <button class="action" id="action4" onclick="download_img()">Download as Image(.png)</button>
           <button class="action" id="action5" onclick="new_page()">New Page</button>
           <button class="action" id="action6" onclick="previous_page()">Previous Page</button>
-          <!--<button class="action" id="action7" onclick="to_pdf()">Convert to PDF</button>-->
-          <button class="action" id="action4" onclick="download_img()">Download as Image(.jpeg)</button>
-          <div id="action7notification"></div>
+          <button class="action" id="action7" onclick="to_pdf()">Convert to PDF</button>
         </div>
         <div id="linkholder">
           <h4>Links</h4>
@@ -60,5 +59,6 @@
     <script type="text/javascript" src="main2.js"></script>
     <script type="text/javascript" src="RecordRTC.min.js"></script>
     <script type="text/javascript" src="videocapture.js"></script>
+    <script type="text/javascript" src="jspdf.min.js"></script>
   </body>
 </html>
