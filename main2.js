@@ -53,17 +53,22 @@ function download_img() {
 
 //to pdf function
 async function to_pdf() {
+  var pdf_page_width, pdf_page_height;
   if(canv.width>canv.height){
     var doc = new jsPDF("landscape","pt" , "a4");
+    pdf_page_width = 842;
+    pdf_page_height = 595;
   }
   else{
     var doc = new jsPDF("portrait","pt" , "a4");
+    pdf_page_width = 595;
+    pdf_page_height = 842;
   }
   for (var i = 0; i < pages_pdf.length; i++) {
-    doc.addImage(pages_pdf[i],'JPEG',0,0,842,595);
+    doc.addImage(pages_pdf[i],'JPEG',0,0,pdf_page_width,pdf_page_height);
     console.log(doc.internal.width);
   }
   //since the last page is not yet added to the array
-  doc.addImage(canv.toDataURL('image/jpeg',1.0),'JPEG',0,0,842,595);
+  doc.addImage(canv.toDataURL('image/jpeg',1.0),'JPEG',0,0,pdf_page_width,pdf_page_height);
   doc.save("yourpdf.pdf");
 }
