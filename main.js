@@ -11,15 +11,15 @@ document.onload=initi();
 
 function initi() {
   resize();
-  canv.addEventListener("touchstart", start_draw,{passive: true});
-  canv.addEventListener("touchend", stop_draw,{passive: true});
-  canv.addEventListener("touchmove", draw,{passive: true});
-  canv.addEventListener("mousedown", start_draw,{passive: true});
-  canv.addEventListener("mouseup", stop_draw,{passive: true});
-  canv.addEventListener("mousemove", draw,{passive: true});
-  canv.addEventListener("pointerdown", start_draw,{passive: true});
-  canv.addEventListener("pointerup", stop_draw,{passive: true});
-  canv.addEventListener("pointermove", draw,{passive: true});
+  canv.addEventListener("touchstart", start_draw);
+  canv.addEventListener("touchend", stop_draw);
+  canv.addEventListener("touchmove", draw);
+  canv.addEventListener("mousedown", start_draw);
+  canv.addEventListener("mouseup", stop_draw);
+  canv.addEventListener("mousemove", draw);
+  canv.addEventListener("pointerdown", start_draw);
+  canv.addEventListener("pointerup", stop_draw);
+  canv.addEventListener("pointermove", draw);
   //window.addEventListener("resize", resize_info);
   document.getElementById("boardcolor").addEventListener("input", board_color,{passive: true});
   document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
