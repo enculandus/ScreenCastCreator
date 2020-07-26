@@ -11,19 +11,19 @@ document.onload=initi();
 
 function initi() {
   resize();
-  canv.addEventListener("touchstart", start_draw);
-  canv.addEventListener("touchend", stop_draw);
-  canv.addEventListener("touchmove", draw);
-  canv.addEventListener("mousedown", start_draw);
-  canv.addEventListener("mouseup", stop_draw);
-  canv.addEventListener("mousemove", draw);
-  canv.addEventListener("pointerdown", start_draw);
-  canv.addEventListener("pointerup", stop_draw);
-  canv.addEventListener("pointermove", draw);
+  canv.addEventListener("touchstart", start_draw,{passive: true});
+  canv.addEventListener("touchend", stop_draw,{passive: true});
+  canv.addEventListener("touchmove", draw,{passive: true});
+  canv.addEventListener("mousedown", start_draw,{passive: true});
+  canv.addEventListener("mouseup", stop_draw,{passive: true});
+  canv.addEventListener("mousemove", draw,{passive: true});
+  canv.addEventListener("pointerdown", start_draw,{passive: true});
+  canv.addEventListener("pointerup", stop_draw,{passive: true});
+  canv.addEventListener("pointermove", draw,{passive: true});
   //window.addEventListener("resize", resize_info);
-  document.getElementById("boardcolor").addEventListener("input", board_color);
-  document.getElementById("strokecolor").addEventListener("input", stroke_properties);
-  document.getElementById("strokewidth").addEventListener("input", stroke_properties);
+  document.getElementById("boardcolor").addEventListener("input", board_color,{passive: true});
+  document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
+  document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
   board_color();
   toggle_sidepanel();
   setup();
@@ -81,7 +81,7 @@ async function toggle_sidepanel() {
 var loc ={x:0 , y:0};
 var controlPoint = {x:0 ,y:0};   //for quadratic curve
 
-function locator(event) {
+async function locator(event) {
   if(event.touches){
     loc.x = event.touches[0].clientX - canv.offsetLeft;
     loc.y = event.touches[0].clientY - canv.offsetTop;
@@ -116,13 +116,18 @@ async function draw(event) {
   if (!strok){return;}
   cntx.beginPath();
   cntx.moveTo(loc.x,loc.y);
-  locator(event);
-  //controlPoint.x=loc.x;
-  //controlPoint.y=loc.y;
-  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
   //locator(event);
-  //cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
-  cntx.lineTo(loc.x,loc.y);
+  controlPoint.x=loc.x;
+  controlPoint.y=loc.y;
+  //new piece
+  locator(event);
+  controlPoint.x = (controlPoint.x + loc.x)/2 ;
+  controlPoint.y = (controlPoint.y + loc.y)/2 ;
+  //end piece
+  document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
+  //locator(event);
+  cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
+  //cntx.lineTo(loc.x,loc.y);
   cntx.stroke();
   //cntx.closePath();
 }
