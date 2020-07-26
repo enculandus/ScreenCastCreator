@@ -17,7 +17,7 @@ function new_page() {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
     pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);
     page_number++;
-    cntx.putImageData(pages[0][page_number],0,0);
+    cntx.putImageData(pages[page_number],0,0);
     if ((pages.length-1)==page_number) {
       document.getElementById('action5').innerHTML="New Page";
     }
