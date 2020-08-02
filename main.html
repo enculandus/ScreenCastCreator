@@ -14,16 +14,16 @@
       <div id="sidepanelout" onclick="toggle_sidepanel()"><img id="reverseimg" align="middle" src="arrow.svg"></div>
         <div id="toolscontainer">
           <h4>Tools</h4>
-          <button class="tools" id="pencil" onclick="start_pencil()">Pencil</button>
+          <button class="tools" id="pencil" onclick="start_pencil()"><img id="icon" src="pencil.png"></button>
           <button class="tools" id="eraser" onclick="start_eraser()">Eraser</button>
           <button class="tools" onclick="document.body.requestFullscreen();full_screen=true">Full Screen</button>
           <button class="tools" onclick="resize_info()">Resize</button>
         </div>
         <div id="toolproperties">
           <h4>Tool Properties</h4>
-          <div id="properties">Thickness: <input id="strokewidth"  value="5" type="number" placeholder="For example: 1"></input></div>
-          <div id="properties">Pencil Color:<input id="strokecolor" value="#ffffff" type="color"></div>
-          <div id="properties">Board Color: <input id="boardcolor" value="#1F6953" type="color"></div>
+          <div id="properties" style="width:100%">Thickness: <input id="strokewidth" style="width:25%" value="5" type="number" placeholder="For example: 1"></input></div>
+          <div id="properties" style="width:45%">Pencil Color:<input id="strokecolor" value="#ffffff" type="color"></div>
+          <div id="properties" style="width:45%">Board Color: <input id="boardcolor" value="#1F6953" type="color"></div>
         </div>
         <div id="actions">
           <h4>Actions</h4>
@@ -33,7 +33,7 @@
           <button class="action" id="action4" onclick="download_img()">Download as Image(.jpeg)</button>
           <button class="action" id="action5" onclick="new_page()">New Page</button>
           <button class="action" id="action6" onclick="previous_page()">Previous Page</button>
-          <button class="action" id="action7" onclick="to_pdf()">Convert to PDF(All Pages)</button>
+          <button class="action" id="action7" onclick="to_pdf()"><img id="icon" alt="Download As PDF" src="pdf-file.png"></button>
         </div>
         <div id="linkholder">
           <h4>Links</h4>

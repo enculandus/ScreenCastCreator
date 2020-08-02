@@ -21,9 +21,9 @@ function initi() {
   canv.addEventListener("pointerup", stop_draw);
   canv.addEventListener("pointermove", draw);
   //window.addEventListener("resize", resize_info);
-  document.getElementById("boardcolor").addEventListener("input", board_color);
-  document.getElementById("strokecolor").addEventListener("input", stroke_properties);
-  document.getElementById("strokewidth").addEventListener("input", stroke_properties);
+  document.getElementById("boardcolor").addEventListener("input", board_color,{passive: true});
+  document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
+  document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
   board_color();
   toggle_sidepanel();
   setup();
@@ -65,6 +65,24 @@ function resize_info() {
 }
 
 async function toggle_sidepanel() {
+  if (toolbox.style.visibility=='hidden') {
+    toolbox.style.visibility='visible';
+    sidein.style.visibility='hidden';
+    for(var opac=0;opac<=1;opac+=0.1){
+      toolbox.style.opacity=opac;
+    }
+  }
+  else  {
+    toolbox.style.visibility='hidden';
+    for(var opac=1;opac>=0;opac-=0.1){
+      toolbox.style.opacity=opac;
+    }
+    sidein.style.visibility='visible';
+  }
+}
+
+/*
+async function toggle_sidepanel() {
     if (toolbox.style.width=='0px') {
       toolbox.style.visibility='visible';
       toolbox.style.width='250px';
@@ -77,11 +95,12 @@ async function toggle_sidepanel() {
     }
     toolbox.height=canv.height;
 }
+*/
 
 var loc ={x:0 , y:0};
-var controlPoint = {x:0 ,y:0};   //for quadratic curve
+var controlPoint = {x:0 , y:0};   //for quadratic curve
 
-function locator(event) {
+async function locator(event) {
   if(event.touches){
     loc.x = event.touches[0].clientX - canv.offsetLeft;
     loc.y = event.touches[0].clientY - canv.offsetTop;
@@ -94,6 +113,14 @@ function locator(event) {
 
 //drawing functions
 var strok = false;
+
+async function stroke_properties() {
+  cntx.lineCap = 'round';
+  cntx.lineWidth = document.getElementById('strokewidth').value;
+  cntx.strokeStyle = document.getElementById('strokecolor').value;
+  cntx.lineJoin = 'round';
+}
+
 async function start_draw(event) {
   event.preventDefault();
   locator(event);
@@ -105,26 +132,34 @@ async function stop_draw(event) {
   strok=false;
 }
 
-async function stroke_properties() {
-  cntx.lineCap = 'round';
-  cntx.lineWidth = document.getElementById('strokewidth').value;
-  cntx.strokeStyle = document.getElementById('strokecolor').value;
-  cntx.lineJoin = 'round';
+///* This function is not yet being used
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
 }
+//*/
 
 async function draw(event) {
   if (!strok){return;}
   cntx.beginPath();
   cntx.moveTo(loc.x,loc.y);
-  locator(event);
-  //controlPoint.x=loc.x;
-  //controlPoint.y=loc.y;
-  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
   //locator(event);
-  //cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
-  cntx.lineTo(loc.x,loc.y);
+  controlPoint.x=loc.x;
+  controlPoint.y=loc.y;
+  //new piece
+  locator(event);
+  controlPoint.x = (controlPoint.x + loc.x)/2;
+  controlPoint.y = (controlPoint.y + loc.y)/2;
+  //end piece
+  //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
+  locator(event);
+  cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
+  //cntx.lineTo(loc.x,loc.y);
   cntx.stroke();
-  //cntx.closePath();
+  cntx.closePath();
 }
 
 function clear_page() {
