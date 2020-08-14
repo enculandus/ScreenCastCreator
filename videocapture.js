@@ -15,7 +15,7 @@ async function start_recording() {
   //for audio
   audiostream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true}});
   //getting stream of canvas only
-  videostream = document.querySelector('canvas').captureStream(70);
+  videostream = document.querySelector('canvas').captureStream(40);
   //videostream = await navigator.mediaDevices.getDisplayMedia(); //alternate
   //for testing
   //video.srcObject = videostream;
@@ -27,7 +27,7 @@ async function start_recording() {
       type: 'canvas',
       mimeType:'video/webm',
       video:{width:canv.width, height:canv.height},
-      frameInterval: 30,
+      frameInterval: 40,
   });
 
   //starting recorder
@@ -53,6 +53,7 @@ function stop_recording() {
     invokeSaveAsDialog(vidblob,"screencast.webm");
   });
 
+  //to stop the tracks, ensuring that the user is asked permissions each time recording is started
   const audtracks = audiostream.getTracks();
   audtracks.forEach(function(track) {
     track.stop();

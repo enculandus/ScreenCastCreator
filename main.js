@@ -11,6 +11,7 @@ document.onload=initi();
 
 function initi() {
   resize();
+  //Setting up for normal drawing
   canv.addEventListener("touchstart", start_draw);
   canv.addEventListener("touchend", stop_draw);
   canv.addEventListener("touchmove", draw);
@@ -26,6 +27,7 @@ function initi() {
   document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
   board_color();
   toggle_sidepanel();
+
   setup();
 }
 
@@ -33,7 +35,9 @@ function setup() {
   document.getElementById('strokewidth').value = "10";
   document.getElementById('strokecolor').value = "#ffffff";
   document.getElementById("boardcolor").value = "#1F6953";
+  toolbox.style.height=(window.innerHeight-47)+'px';
   start_pencil();
+  toggle_sidepanel();
 }
 
 function board_color() {
@@ -49,8 +53,8 @@ function resize() {
     //saving original image
     var original=cntx.getImageData(0,0,canv.width,canv.height);
     //resizing the canvas
-    canv.width = window.innerWidth-22;
-    canv.height = window.innerHeight-22;
+    canv.width = window.innerWidth-20;
+    canv.height = window.innerHeight-20;
     //filling the canvas with a background color
     board_color();
     //placing the image back on to this canvas
@@ -65,6 +69,24 @@ function resize_info() {
 }
 
 async function toggle_sidepanel() {
+  if (toolbox.style.visibility=='hidden') {
+    toolbox.style.visibility='visible';
+    sidein.style.visibility='hidden';
+    for(var opac=0;opac<=1;opac+=0.1){
+      toolbox.style.opacity=opac;
+    }
+  }
+  else  {
+    toolbox.style.visibility='hidden';
+    sidein.style.visibility='visible';
+    for(var opac=1;opac>=0;opac-=0.1){
+      toolbox.style.opacity=opac;
+    }
+  }
+}
+
+/*
+async function toggle_sidepanel() {
     if (toolbox.style.width=='0px') {
       toolbox.style.visibility='visible';
       toolbox.style.width='250px';
@@ -77,9 +99,10 @@ async function toggle_sidepanel() {
     }
     toolbox.height=canv.height;
 }
+*/
 
 var loc ={x:0 , y:0};
-var controlPoint = {x:0 ,y:0};   //for quadratic curve
+var controlPoint = {x:0 , y:0};   //for quadratic curve
 
 async function locator(event) {
   if(event.touches){
@@ -94,6 +117,14 @@ async function locator(event) {
 
 //drawing functions
 var strok = false;
+
+async function stroke_properties() {
+  cntx.lineCap = 'round';
+  cntx.lineWidth = document.getElementById('strokewidth').value;
+  cntx.strokeStyle = document.getElementById('strokecolor').value;
+  cntx.lineJoin = 'round';
+}
+
 async function start_draw(event) {
   event.preventDefault();
   locator(event);
@@ -105,12 +136,15 @@ async function stop_draw(event) {
   strok=false;
 }
 
-async function stroke_properties() {
-  cntx.lineCap = 'round';
-  cntx.lineWidth = document.getElementById('strokewidth').value;
-  cntx.strokeStyle = document.getElementById('strokecolor').value;
-  cntx.lineJoin = 'round';
+///* This function is not yet being used
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
 }
+//*/
 
 async function draw(event) {
   if (!strok){return;}
@@ -129,7 +163,7 @@ async function draw(event) {
   cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
   //cntx.lineTo(loc.x,loc.y);
   cntx.stroke();
-  //cntx.closePath();
+  cntx.closePath();
 }
 
 function clear_page() {
@@ -151,14 +185,14 @@ function start_eraser() {
   }
   //changing button properties
   document.getElementById('eraser').style.color = "white";
-  document.getElementById('eraser').style.backgroundColor = "black";
+  document.getElementById('eraser').style.backgroundColor = "#9392FF";
   document.getElementById('pencil').style.color = "black";
   document.getElementById('pencil').style.backgroundColor = "white";
 }
 
 //Toggle to pencil
 function start_pencil() {
-  if(document.getElementById('eraser').style.backgroundColor == "black"){
+  if(document.getElementById('eraser').style.color == "white"){
     //changing strokewidth back to original
     document.getElementById('strokewidth').value = ostrokewidth;
     //schanging it to background color
@@ -168,7 +202,7 @@ function start_pencil() {
   document.getElementById('eraser').style.color = "black";
   document.getElementById('eraser').style.backgroundColor = "white";
   document.getElementById('pencil').style.color = "white";
-  document.getElementById('pencil').style.backgroundColor = "black";
+  document.getElementById('pencil').style.backgroundColor = "#9392FF";
 }
 
 

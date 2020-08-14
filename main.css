@@ -5,9 +5,10 @@
   width:100%;
 }
 
-h4{
+h5{
   margin-top: 1%;
   margin-bottom: 2%;
+  font-size: 15px;
 }
 
 #sidepanelin{
@@ -29,12 +30,13 @@ h4{
 
 #logoholder{
   float: left;
-  align-self: flex-start;
+  /*align-self: flex-start;*/
   margin: 2px 8px;
+  background-color: white;
 }
 
 #logo{
-  width: 130px;
+  width: 70px;
 }
 
 #reverseimg{
@@ -42,16 +44,20 @@ h4{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 50px;
+  height: 40px;
 }
 
 #toolbox{
-  width: 250px;
-  height:96%;
+  top: 10px;
+  bottom: 0px;
+  height:400px;
+  max-width: 200px;
+  min-width: 150px;
+  width:11%;
   float: left;
-
-  margin-left: 0 ;
-  /*display: flex;*/
+  visibility: hidden;
+  margin-left: 10px;
+  margin-bottom: 20%;
   z-index: 1;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -59,6 +65,7 @@ h4{
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 10px;
+  padding-right: 10px;
   transition: 0.5s;
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
@@ -84,22 +91,25 @@ h4{
 }
 
 input{
-  width: 85%;
-  margin: 1% 2%;
+  width: 90%;
+  margin: 1% 1% 1% 1%;
 }
 
 
 #actions{
   width: 100%;
   float: left;
-  margin-left: 2%;
+  margin: 2%;
 }
 
 .action{
-  width: 95%;
-  margin: 1% 1%;
+  width: 30px;
+  height: 30px;
+  min-width: 25px;
+  min-height: 25px;
+  margin: 1% 1% 1% 1%;
   float: left;
-  padding: 2%;
+  padding: 2px 2px 2px 2px;
   text-align: center;
   display: block;
   border-radius: 10px;
@@ -107,12 +117,17 @@ input{
 }
 
 .action:hover{
-  background-color: #000;
+  background-color: #94BDFD;
   color: white;
 }
 
 #action2:hover{
-  background-color: #e32424;
+  background-color: #d5202c;
+  color: white;
+}
+
+#action3:hover{
+  background-color: #d5202c;
   color: white;
 }
 
@@ -123,18 +138,19 @@ input{
 }
 
 #properties{
-  margin: 1% 2%;
+  margin: 1% 2% 1% 1%;
   float: left;
   padding-top: 3px;
   padding-bottom: 3px;
+  font-size: 12px;
 
 }
 
 .tools{
-  /*width: 95%;*/
-  margin: 1% 1%;
+  width: 45%;
+  margin: 1% 1% 1% 1%;
   float: left;
-  padding: 3% 3%;
+  padding: 2px 2px 2px 2px;
   text-align: center;
   display: block;
   background-color: white;
@@ -144,16 +160,8 @@ input{
 }
 
 .tools:hover{
-  background-color: #000;
-  color: white;
-}
-
-#pencil{
-
-}
-
-#eraser{
-
+  background-color: #9392FF;
+  fill:white;
 }
 
 #canvas1{
@@ -165,12 +173,14 @@ input{
 }
 
 #testv{
-  visibility:visible;
+  visibility:hidden;
 }
 
-#action7notification{
-  height:0;
+#icon{
+    max-width: 30px;
+    max-height: 30px;
 }
+
 
 body{
   margin: 0;
