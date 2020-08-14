@@ -155,8 +155,8 @@ async function draw(event) {
   controlPoint.y=loc.y;
   //new piece
   locator(event);
-  controlPoint.x = (controlPoint.x + loc.x)/2;
-  controlPoint.y = (controlPoint.y + loc.y)/2;
+  controlPoint.x = (controlPoint.x + loc.x)/2 ;
+  controlPoint.y = (controlPoint.y + loc.y)/2 ;
   //end piece
   //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
   //locator(event);
