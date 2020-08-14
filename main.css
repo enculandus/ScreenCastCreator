@@ -117,11 +117,16 @@ input{
 }
 
 .action:hover{
-  background-color: #2176ff;
+  background-color: #94BDFD;
   color: white;
 }
 
 #action2:hover{
+  background-color: #d5202c;
+  color: white;
+}
+
+#action3:hover{
   background-color: #d5202c;
   color: white;
 }
@@ -155,7 +160,7 @@ input{
 }
 
 .tools:hover{
-  background-color: #2176ff;
+  background-color: #9392FF;
   fill:white;
 }
 

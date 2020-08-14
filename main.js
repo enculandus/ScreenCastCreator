@@ -26,7 +26,7 @@ function initi() {
   document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
   document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
   board_color();
-  //toggle_sidepanel();
+  toggle_sidepanel();
 
   setup();
 }
@@ -185,14 +185,14 @@ function start_eraser() {
   }
   //changing button properties
   document.getElementById('eraser').style.color = "white";
-  document.getElementById('eraser').style.backgroundColor = "black";
+  document.getElementById('eraser').style.backgroundColor = "#9392FF";
   document.getElementById('pencil').style.color = "black";
   document.getElementById('pencil').style.backgroundColor = "white";
 }
 
 //Toggle to pencil
 function start_pencil() {
-  if(document.getElementById('eraser').style.backgroundColor == "black"){
+  if(document.getElementById('eraser').style.color == "white"){
     //changing strokewidth back to original
     document.getElementById('strokewidth').value = ostrokewidth;
     //schanging it to background color
@@ -202,7 +202,7 @@ function start_pencil() {
   document.getElementById('eraser').style.color = "black";
   document.getElementById('eraser').style.backgroundColor = "white";
   document.getElementById('pencil').style.color = "white";
-  document.getElementById('pencil').style.backgroundColor = "black";
+  document.getElementById('pencil').style.backgroundColor = "#9392FF";
 }
 
 
