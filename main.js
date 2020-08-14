@@ -159,7 +159,7 @@ async function draw(event) {
   controlPoint.y = (controlPoint.y + loc.y)/2;
   //end piece
   //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
-  locator(event);
+  //locator(event);
   cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
   //cntx.lineTo(loc.x,loc.y);
   cntx.stroke();
