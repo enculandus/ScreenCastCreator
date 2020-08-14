@@ -11,6 +11,7 @@ document.onload=initi();
 
 function initi() {
   resize();
+  //Setting up for normal drawing
   canv.addEventListener("touchstart", start_draw);
   canv.addEventListener("touchend", stop_draw);
   canv.addEventListener("touchmove", draw);
@@ -25,7 +26,8 @@ function initi() {
   document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
   document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
   board_color();
-  toggle_sidepanel();
+  //toggle_sidepanel();
+
   setup();
 }
 
@@ -33,7 +35,9 @@ function setup() {
   document.getElementById('strokewidth').value = "10";
   document.getElementById('strokecolor').value = "#ffffff";
   document.getElementById("boardcolor").value = "#1F6953";
+  //toolbox.style.height=window.innerHeight;
   start_pencil();
+  toggle_sidepanel();
 }
 
 function board_color() {
@@ -49,8 +53,8 @@ function resize() {
     //saving original image
     var original=cntx.getImageData(0,0,canv.width,canv.height);
     //resizing the canvas
-    canv.width = window.innerWidth-22;
-    canv.height = window.innerHeight-22;
+    canv.width = window.innerWidth-20;
+    canv.height = window.innerHeight-20;
     //filling the canvas with a background color
     board_color();
     //placing the image back on to this canvas
@@ -74,10 +78,10 @@ async function toggle_sidepanel() {
   }
   else  {
     toolbox.style.visibility='hidden';
+    sidein.style.visibility='visible';
     for(var opac=1;opac>=0;opac-=0.1){
       toolbox.style.opacity=opac;
     }
-    sidein.style.visibility='visible';
   }
 }
 
