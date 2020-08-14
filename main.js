@@ -35,7 +35,7 @@ function setup() {
   document.getElementById('strokewidth').value = "10";
   document.getElementById('strokecolor').value = "#ffffff";
   document.getElementById("boardcolor").value = "#1F6953";
-  //toolbox.style.height=window.innerHeight;
+  toolbox.style.height=(window.innerHeight-47)+'px';
   start_pencil();
   toggle_sidepanel();
 }

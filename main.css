@@ -8,6 +8,7 @@
 h5{
   margin-top: 1%;
   margin-bottom: 2%;
+  font-size: 15px;
 }
 
 #sidepanelin{
@@ -48,10 +49,11 @@ h5{
 
 #toolbox{
   top: 10px;
-  //bottom: 1px;
+  bottom: 0px;
+  height:400px;
   max-width: 200px;
   min-width: 150px;
-  width:10%;
+  width:11%;
   float: left;
   visibility: hidden;
   margin-left: 10px;
@@ -101,11 +103,13 @@ input{
 }
 
 .action{
+  width: 30px;
+  height: 30px;
   min-width: 25px;
   min-height: 25px;
   margin: 1% 1% 1% 1%;
   float: left;
-  padding: 2% 2% 2% 2%;
+  padding: 2px 2px 2px 2px;
   text-align: center;
   display: block;
   border-radius: 10px;
@@ -138,10 +142,10 @@ input{
 }
 
 .tools{
-  /*width: 95%;*/
+  width: 45%;
   margin: 1% 1% 1% 1%;
   float: left;
-  padding: 3% 3%;
+  padding: 2px 2px 2px 2px;
   text-align: center;
   display: block;
   background-color: white;
