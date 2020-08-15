@@ -17,20 +17,21 @@ function initi() {
   document.getElementById("boardcolor").addEventListener("input", board_color,{passive: true});
   document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
   document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
-
   setup();
 }
 
 function drawing_setup() {
   canv.addEventListener("touchstart", start_draw);
-  canv.addEventListener("touchend", stop_draw);
   canv.addEventListener("touchmove", draw);
+  canv.addEventListener("touchend", stop_draw);
   canv.addEventListener("mousedown", start_draw);
-  canv.addEventListener("mouseup", stop_draw);
   canv.addEventListener("mousemove", draw);
+  canv.addEventListener("mouseup", stop_draw);
+  canv.addEventListener("mouseout", stop_draw);
   canv.addEventListener("pointerdown", start_draw);
-  canv.addEventListener("pointerup", stop_draw);
   canv.addEventListener("pointermove", draw);
+  canv.addEventListener("pointerup", stop_draw);
+  canv.addEventListener("pointerout", stop_draw);
 }
 
 function setup() {
@@ -41,6 +42,7 @@ function setup() {
   toggle_sidepanel();
   start_pencil();
   toggle_sidepanel();
+  //startup_instructions();
 }
 
 function board_color() {
@@ -227,4 +229,16 @@ async function loadscript(url, location, notifier_id){
 
     document.getElementById(notifier_id).innerHTML="";
     document.getElementById(notifier_id).style.height='0px';
+}
+
+async function startup_instructions() {
+  write_on_canvas("Welcome To the Content Creator Blackboard.", canv.width/2, canv.height/2);
+  write_on_canvas("Start Drawing!", canv.width/2, (canv.height/2) + 40);
+  write_on_canvas("Use the reset Button in the 'Actions panel'(the first one) to clear this message.", 20, (canv.height/2) + 80);
+}
+
+async function write_on_canvas(string, corx, cory) {
+  cntx.font = "30px Arial";
+  cntx.fillStyle="white";
+  cntx.fillText(string, corx, cory);
 }

@@ -46,7 +46,7 @@ async function stop_recording() {
   //stopping recorders
   recorder.stopRecording(function() {
     var vidblob = recorder.getBlob();
-    //ocument.getElementById('testv').src = URL.createObjectURL(blob);
+    //document.getElementById('testv').src = URL.createObjectURL(blob);
     //document.getElementById('testv').parentNode.style.display = 'block';
     invokeSaveAsDialog(vidblob,"screencast.webm");
   });
