@@ -12,6 +12,16 @@ document.onload=initi();
 function initi() {
   resize();
   //Setting up for normal drawing
+  drawing_setup();
+  //window.addEventListener("resize", resize_info);
+  document.getElementById("boardcolor").addEventListener("input", board_color,{passive: true});
+  document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
+  document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
+
+  setup();
+}
+
+function drawing_setup() {
   canv.addEventListener("touchstart", start_draw);
   canv.addEventListener("touchend", stop_draw);
   canv.addEventListener("touchmove", draw);
@@ -21,21 +31,14 @@ function initi() {
   canv.addEventListener("pointerdown", start_draw);
   canv.addEventListener("pointerup", stop_draw);
   canv.addEventListener("pointermove", draw);
-  //window.addEventListener("resize", resize_info);
-  document.getElementById("boardcolor").addEventListener("input", board_color,{passive: true});
-  document.getElementById("strokecolor").addEventListener("input", stroke_properties,{passive: true});
-  document.getElementById("strokewidth").addEventListener("input", stroke_properties,{passive: true});
-  board_color();
-  toggle_sidepanel();
-
-  setup();
 }
 
 function setup() {
-  document.getElementById('strokewidth').value = "10";
-  document.getElementById('strokecolor').value = "#ffffff";
-  document.getElementById("boardcolor").value = "#1F6953";
-  toolbox.style.height=(window.innerHeight-47)+'px';
+  //document.getElementById('strokecolor').value = "#ffffff";
+  //document.getElementById("boardcolor").value = "#1F6953";
+  toolbox.style.height=(window.innerHeight-44)+'px';
+  board_color();
+  toggle_sidepanel();
   start_pencil();
   toggle_sidepanel();
 }
@@ -136,7 +139,7 @@ async function stop_draw(event) {
   strok=false;
 }
 
-///* This function is not yet being used
+/* This function is not yet being used
 function sleep(milliseconds) {
   const date = Date.now();
   let currentDate = null;
@@ -144,7 +147,7 @@ function sleep(milliseconds) {
     currentDate = Date.now();
   } while (currentDate - date < milliseconds);
 }
-//*/
+*/
 
 async function draw(event) {
   if (!strok){return;}
@@ -159,7 +162,7 @@ async function draw(event) {
   controlPoint.y = (controlPoint.y + loc.y)/2 ;
   //end piece
   //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
-  //locator(event);
+  locator(event);
   cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
   //cntx.lineTo(loc.x,loc.y);
   cntx.stroke();
