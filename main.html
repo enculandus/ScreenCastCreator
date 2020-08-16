@@ -35,6 +35,13 @@
           <button class="action" id="action6" onclick="previous_page()" style="width:100%">Previous Page</button>
           <button class="action" id="action7" onclick="to_pdf()"><img id="icon" src="Document.svg"></button>
         </div>
+	  <div id="insertimage">
+		  <h5>Insert Image:</h5>
+		  <input type="file" onchange="previewImage(this);">
+		  <h6>Preview:</h6>
+		  <img id="preview">
+		  <button onclick="initi3();">Upload Image on Board</button>
+	  </div>
         <div id="linkholder">
           <h5>Links</h5>
           <button class="action" onclick="window.open('index.html')" style="width:100%">Home</button>
@@ -43,11 +50,11 @@
           <!--<video id="testv" height="1000px" width="100px" controls>
           </video>-->
         </div>
-      </br>
-        <div style="font-size:12px">
-          Attributions:</br>
+      <br>
+        <div style="font-size:12px" id="attributions">
+          Attributions:<br>
           Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-        </br>
+        <br>
         Many icons also from <a href="systemuicons.com">System UIcons</a>
         </div>
     </div>
@@ -59,6 +66,7 @@
         <p><a href="www.google.com/chrome">Google Chrome</a></p>
         <p><a href="#"></a></p>
       </canvas>
+		<canvas id="canvas2"></canvas>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
     <script type="text/javascript" src="main.js"></script>
@@ -66,5 +74,6 @@
     <script type="text/javascript" src="RecordRTC.min.js"></script>
     <script type="text/javascript" src="videocapture.js"></script>
     <script type="text/javascript" src="jspdf.min.js"></script>
+	<script type="text/javascript" src="drawimage.js"></script>
   </body>
 </html>

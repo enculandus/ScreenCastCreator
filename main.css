@@ -90,6 +90,18 @@ h5{
   margin: 1% 1%;
 }
 
+#attributions{
+  width: 100%;
+  float: left;
+  margin: 1% 1%;
+}
+
+#insertimage{
+  width: 100%;
+  float: left;
+  margin: 1% 1%;
+}
+
 input{
   width: 90%;
   margin: 1% 1% 1% 1%;
@@ -170,6 +182,16 @@ input{
   margin:10px;
   float: right;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#canvas2{
+  /*border: 2px solid black;*/
+  z-index: 1;
+  height: 0px;
+  width: 0px;
+  margin: 0px;
+  opacity: 0.5;
+  background: #FFFFFF;
 }
 
 #testv{

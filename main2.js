@@ -1,10 +1,10 @@
 document.onload = initi2();
 function initi2() {
-
 }
 
 //for pages functionality start (additional array to enable pdf functionality added)
 var pages = [], pages_pdf = [],page_number=0;
+
 function new_page() {
   if (pages.length==page_number||pages.length-1==page_number) {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
