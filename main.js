@@ -6,6 +6,7 @@ const video = document.querySelector('#testv');
 const toolbox = document.getElementById('toolbox');
 const sidein = document.getElementById('sidepanelin');
 const sideout = document.getElementById('sidepanelout');
+var undo_arr = [];
 
 document.onload=initi();
 
@@ -27,21 +28,22 @@ function drawing_setup() {
   canv.addEventListener("mousedown", start_draw);
   canv.addEventListener("mousemove", draw);
   canv.addEventListener("mouseup", stop_draw);
+  canv.addEventListener("mouseup", auxillary_stop_draw);
   canv.addEventListener("mouseout", stop_draw);
   canv.addEventListener("pointerdown", start_draw);
   canv.addEventListener("pointermove", draw);
   canv.addEventListener("pointerup", stop_draw);
+  canv.addEventListener("pointerup", auxillary_stop_draw);
   canv.addEventListener("pointerout", stop_draw);
 }
 
 function setup() {
-  //document.getElementById('strokecolor').value = "#ffffff";
-  //document.getElementById("boardcolor").value = "#1F6953";
   toolbox.style.height=(window.innerHeight-44)+'px';
   board_color();
   toggle_sidepanel();
   start_pencil();
   toggle_sidepanel();
+  update_page_image();
   //startup_instructions();
 }
 
@@ -90,22 +92,7 @@ async function toggle_sidepanel() {
   }
 }
 
-/*
-async function toggle_sidepanel() {
-    if (toolbox.style.width=='0px') {
-      toolbox.style.visibility='visible';
-      toolbox.style.width='250px';
-      sidein.style.visibility='hidden';
-    }
-    else  {
-      toolbox.style.visibility='hidden';
-      toolbox.style.width='0px';
-      sidein.style.visibility='visible';
-    }
-    toolbox.height=canv.height;
-}
-*/
-
+//drawing pre-requisites
 var loc ={x:0 , y:0};
 var controlPoint = {x:0 , y:0};   //for quadratic curve
 
@@ -137,11 +124,17 @@ async function start_draw(event) {
   strok =true;
 }
 
-async function stop_draw(event) {
+async function auxillary_stop_draw() {
   strok=false;
+  update_page_image();
 }
 
-/* This function is not yet being used
+async function stop_draw(event) {
+  strok=false;
+  //update_page_image();
+}
+
+// This function is not yet being used
 function sleep(milliseconds) {
   const date = Date.now();
   let currentDate = null;
@@ -149,7 +142,7 @@ function sleep(milliseconds) {
     currentDate = Date.now();
   } while (currentDate - date < milliseconds);
 }
-*/
+
 
 async function draw(event) {
   if (!strok){return;}
@@ -232,13 +225,31 @@ async function loadscript(url, location, notifier_id){
 }
 
 async function startup_instructions() {
-  write_on_canvas("Welcome To the Content Creator Blackboard.", canv.width/2, canv.height/2);
-  write_on_canvas("Start Drawing!", canv.width/2, (canv.height/2) + 40);
-  write_on_canvas("Use the reset Button in the 'Actions panel'(the first one) to clear this message.", 20, (canv.height/2) + 80);
+  write_on_canvas("Welcome To the Content Creator Blackboard.", toolbox.style.width + 2, canv.height/2);
+  write_on_canvas("Start Drawing!", 200, (canv.height/2) + 40);
+  write_on_canvas("Use the reset Button in the 'Actions panel'(the first one) to clear this message.", 200, (canv.height/2) + 80);
 }
 
 async function write_on_canvas(string, corx, cory) {
   cntx.font = "30px Arial";
   cntx.fillStyle="white";
   cntx.fillText(string, corx, cory);
+}
+
+//Trying Undo functionality:
+var undo_arr_index;
+async function update_page_image() {
+  var board_image = cntx.getImageData(0,0,canv.width,canv.height);
+  if(undo_arr_index<(undo_arr.length)){
+    undo_arr.splice( (undo_arr_index + 1), (undo_arr.length - undo_arr_index - 1));
+  }
+  undo_arr.push(board_image);
+  undo_arr_index = undo_arr.length - 1; //array indexing issue
+}
+
+async function undo() {
+  if(undo_arr_index>0){
+    undo_arr_index -= 1;
+    cntx.putImageData(undo_arr[undo_arr_index],0,0);
+  }
 }
