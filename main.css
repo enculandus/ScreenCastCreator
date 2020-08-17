@@ -11,6 +11,12 @@ h5{
   font-size: 15px;
 }
 
+h6{
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
 #sidepanelin{
   z-index: 20;
   background-color: white;
@@ -90,6 +96,18 @@ h5{
   margin: 1% 1%;
 }
 
+#attributions{
+  width: 100%;
+  float: left;
+  margin: 1% 1%;
+}
+
+#insertimage{
+  width: 100%;
+  float: left;
+  margin: 1% 1%;
+}
+
 input{
   width: 90%;
   margin: 1% 1% 1% 1%;
@@ -163,6 +181,17 @@ input{
   margin:10px;
   float: right;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#canvas2{
+  /*border: 2px solid black;*/
+  z-index: 1;
+  margin: 10px;
+  opacity: 0.25;
+/*  background: #000000;  */
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
 }
 
 #testv{

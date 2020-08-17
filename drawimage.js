@@ -7,21 +7,23 @@
 
 		var filechooser  = document.getElementById("furl");
 
-		
+
 		function previewImage(input){
 			// this function is to show preview of image
 			var files = event.target.files;
 			var file = files[0];
-			
+
 			if(file.type !== '' && !file.type.match('image.*'))
         {
 			alert("Select valid image file!")
             return;
         }
 			else{
-			
+
 			var reader = new FileReader();
 			reader.onload = function (e){
+				document.getElementById("preview").style.height = '100px';
+				document.getElementById("preview").style.width = '90%';
 				document.getElementById("preview").setAttribute("src", e.target.result);
 			};
 			reader.readAsDataURL(input.files[0]);
@@ -29,18 +31,18 @@
 		}
 
 		function imgavailable(){
-			
+
 			if(filechooser.value != ""){
 				initi3();
 			}
 			else{
 				alert("First select Image to upload!");
 			}
-			
+
 		}
-		
+
 		function setImage(x, y){
-			
+
 	//		var image = document.getElementById("preview");
 			if(!image.complete){
 				setTimeout(function(){
@@ -48,7 +50,7 @@
 				},50);
 				return;
 			}
-			
+
 			context.drawImage(image, x, y);
 		}
 
@@ -70,12 +72,14 @@ function initi3() {
 var movement = false;
 
 function showCanvas() {
-				recorder.pauseRecording();
-            canvas2.style.visibility = 'visible'; 
+				if(audiostream){
+					recorder.pauseRecording();
+				}
+            canvas2.style.visibility = 'visible';
 	//		canv.style.visibility = 'hidden';
 	//		canvas2.style.width = canv.style.width;
 	//		canvas2.style.height = canv.style.height;
-			
+
 			canvas2.width = window.innerWidth-20;
 			canvas2.height = window.innerHeight-20;
 			canvas2.style.boxShadow = canv.style.boxShadow;
@@ -86,20 +90,10 @@ function hideCanvas() {
 	canvas2.style.visibility = 'hidden';
 	canvas2.width = '0';
 	canvas2.height = '0';
-	recorder.resumeRecording();
+	if(audiostream){
+		recorder.resumeRecording();
+	}
 }
-/*
-async function locate(event) {
-  if(event.touches){
-    loca.x = event.touches[0].clientX - canvas2.offsetLeft;
-    loca.y = event.touches[0].clientY - canvas2.offsetTop;
-  }
-  else{
-   loca.x = event.clientX - canvas2.offsetLeft;
-   loca.y = event.clientY - canvas2.offsetTop;
-  }
-}
-*/
 
 async function start_move(event) {
   event.preventDefault();
@@ -143,5 +137,5 @@ function copy(){
 	cntx.putImageData(imgdata, loc.x, loc.y);
 	clearpage();
 	hideCanvas();
-	
+
 }

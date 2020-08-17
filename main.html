@@ -38,14 +38,14 @@
           <button class="action" id="action6" onclick="previous_page()" style="width:100%">Previous Page</button>
           <button class="action" id="action7" onclick="to_pdf()"><img id="icon" src="Document.svg"></button>
         </div>
-        <!--<div id="insertimage">
+        <div id="insertimage">
 		      <h5>Insert Image:</h5>
-		      <input id="furl" type="file" onchange="previewImage(this);">
+		      <input id="furl" style="width:100%" type="file" onchange="previewImage(this);">
 		      <h6>Preview:</h6>
-		      <img id="preview">
-		      <button onclick="imgavailable()">Add Image to Board</button>
-		      <button onClick="saveimgdata()"> Save location of the Image</button>
-	      </div>-->
+		      <img id="preview" width="90%" height="0px">
+		      <button class="action" style="width:100%" onclick="imgavailable()">Add Image to Board</button>
+		      <button class="action" style="width:100%" onClick="saveimgdata()"> Save location of the Image</button>
+	      </div>
         <div id="linkholder">
           <h5>Links</h5>
           <button class="action" onclick="window.open('index.html')" style="width:100%">Home</button>
