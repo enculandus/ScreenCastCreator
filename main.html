@@ -21,16 +21,18 @@
         </div>
         <div id="toolproperties">
           <h5>Tool Properties</h5>
-          <div id="properties" style="width:85%">Stroke:<input id="strokewidth"  value="5" type="number" placeholder="For example: 1"></input></div>
+          <div id="properties" style="width:85%">Stroke:<input id="strokewidth"  value="5" type="number" placeholder="Example: 1"></input></div>
           <div id="properties" style="width:45%">Pen:<input id="strokecolor" value="#ffffff" type="color"></div>
           <div id="properties" style="width:45%">Board:<input id="boardcolor" value="#1F6953" type="color"></div>
         </div>
         <div id="actions">
           <h5>Actions</h5>
           <button class="action" id="action1" onclick="clear_page()"><img id="icon" src="Clear.svg"></button>
-          <button class="action" id="action4" onclick="download_img()" alt="Download as .jpg"><img id="icon" src="Capture.svg"></button>
           <button class="action" id="action2" onclick="start_recording()"><img id="icon" src="Record.svg"></button>
           <button class="action" id="action3" onclick="stop_recording()"><img id="icon" src="Stop.svg"></button>
+          <button class="action" id="action4" onclick="download_img()" alt="Download as .jpg"><img id="icon" src="Capture.svg"></button>
+          <button class="action" id="action8" onclick="undo()"><img id="icon" src="Undo.svg"></button>
+          <button class="action" id="action9" onclick="redo()"><img id="icon" src="Redo.svg"></button>
           <button class="action" id="action5" onclick="new_page()" style="width:100%">New Page</button>
           <button class="action" id="action6" onclick="previous_page()" style="width:100%">Previous Page</button>
           <button class="action" id="action7" onclick="to_pdf()"><img id="icon" src="Document.svg"></button>
@@ -51,12 +53,12 @@
           <!--<video id="testv" height="1000px" width="100px" controls>
           </video>-->
         </div>
-      <br>
-        <div style="font-size:12px" id="attributions">
-          Attributions:<br>
-          Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-        <br>
-        Many icons also from <a href="systemuicons.com">System UIcons</a>
+        </br>
+        <div style="font-size:12px;display:block; width:100%;float:left">
+          </br>Attributions:</br>
+            Some icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+          </br></br>
+            Many icons also from <a href="https://www.systemuicons.com">System UIcons</a>
         </div>
     </div>
     <div id="pagecontainer">
