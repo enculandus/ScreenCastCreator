@@ -130,6 +130,15 @@ function clearpage() {
 }
 
 function saveimgdata(){
+	if(filechooser.value != ""){
+				copy();
+			}
+			else{
+				alert("First select Image to upload!");
+			}
+}
+
+function copy(){
 	var imgdata = context.getImageData(loc.x, loc.y, image.width, image.height);
 	cntx.putImageData(imgdata, loc.x, loc.y);
 	clearpage();
