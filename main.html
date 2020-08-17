@@ -16,6 +16,7 @@
           <h5>Tools</h5>
           <button class="tools" id="pencil" onclick="start_pencil()"><img id="icon" src="Pen.svg"></button>
           <button class="tools" id="eraser" onclick="start_eraser()"><img id="icon" style="width:21px;height:21px" src="eraser.png"></button>
+          <button class="tools" id="lines" onclick="start_line_drawing()" style="width:100%">Draw Lines</button>
           <button class="tools" onclick="document.body.requestFullscreen();full_screen=true"><img id="icon" src="Fullscreen.svg"></button>
           <button class="tools" onclick="resize_info()"><img id="icon" src="Expand.svg"></button>
         </div>
@@ -27,7 +28,7 @@
         </div>
         <div id="actions">
           <h5>Actions</h5>
-          <button class="action" id="action1" onclick="clear_page()"><img id="icon" src="Clear.svg"></button>
+          <button class="action" id="action1" onclick="clear_page(cntx)"><img id="icon" src="Clear.svg"></button>
           <button class="action" id="action2" onclick="start_recording()"><img id="icon" src="Record.svg"></button>
           <button class="action" id="action3" onclick="stop_recording()"><img id="icon" src="Stop.svg"></button>
           <button class="action" id="action4" onclick="download_img()" alt="Download as .jpg"><img id="icon" src="Capture.svg"></button>
@@ -55,6 +56,13 @@
     </div>
     <div id="pagecontainer">
       <canvas id="canvas1">
+        <p>Your Browser is not supported by this web app. We regret the inconveniance caused.</p>
+        <p>Please try one of these supported browsers:</p>
+        <p><a href="www.mozilla.org">Mozilla Firefox</a></p>
+        <p><a href="www.google.com/chrome">Google Chrome</a></p>
+        <p><a href="#"></a></p>
+      </canvas>
+      <canvas id="canvas3" width="0px" height="0px">
         <p>Your Browser is not supported by this web app. We regret the inconveniance caused.</p>
         <p>Please try one of these supported browsers:</p>
         <p><a href="www.mozilla.org">Mozilla Firefox</a></p>

@@ -12,7 +12,7 @@ h5{
 }
 
 #sidepanelin{
-  z-index: 1;
+  z-index: 20;
   background-color: white;
   position: fixed;
   height: 10%;
@@ -58,7 +58,7 @@ h5{
   visibility: hidden;
   margin-left: 10px;
   //margin-bottom: 20%;
-  z-index: 1;
+  z-index: 20;
   overflow-x: hidden;
   overflow-y: scroll;
   position: fixed;
@@ -141,7 +141,7 @@ input{
 }
 
 .tools{
-  width: 45%;
+  width: 48%;
   margin: 1% 1% 1% 1%;
   float: left;
   padding: 2px 2px 2px 2px;
@@ -171,6 +171,17 @@ input{
 
 #icon{
     vertical-align: middle;
+}
+
+#canvas3{
+  border-radius: 10px;
+  margin-left: 10px;
+  background-color: ;
+  visibility: hidden;
+  opacity: 0;
+  top: 10px;
+  position: fixed;
+  z-index: 1;
 }
 
 
