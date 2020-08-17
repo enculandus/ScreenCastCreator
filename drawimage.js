@@ -70,6 +70,7 @@ function initi3() {
 var movement = false;
 
 function showCanvas() {
+				recorder.pauseRecording();
             canvas2.style.visibility = 'visible'; 
 	//		canv.style.visibility = 'hidden';
 	//		canvas2.style.width = canv.style.width;
@@ -78,12 +79,14 @@ function showCanvas() {
 			canvas2.width = window.innerWidth-20;
 			canvas2.height = window.innerHeight-20;
 			canvas2.style.boxShadow = canv.style.boxShadow;
+
         }
 
 function hideCanvas() {
 	canvas2.style.visibility = 'hidden';
 	canvas2.width = '0';
 	canvas2.height = '0';
+	recorder.resumeRecording();
 }
 /*
 async function locate(event) {
