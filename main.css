@@ -12,7 +12,7 @@ h5{
 }
 
 #sidepanelin{
-  z-index: 1;
+  z-index: 4;
   background-color: white;
   position: fixed;
   height: 10%;
@@ -58,7 +58,7 @@ h5{
   visibility: hidden;
   margin-left: 10px;
   margin-bottom: 20%;
-  z-index: 1;
+  z-index: 4;
   overflow-x: hidden;
   overflow-y: scroll;
   position: fixed;
@@ -187,11 +187,12 @@ input{
 #canvas2{
   /*border: 2px solid black;*/
   z-index: 1;
-  height: 0px;
-  width: 0px;
-  margin: 0px;
-  opacity: 0.5;
-  background: #FFFFFF;
+  margin: 10px;
+  opacity: 0.25;
+/*  background: #000000;  */
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
 }
 
 #testv{

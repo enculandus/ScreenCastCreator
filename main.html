@@ -37,10 +37,11 @@
         </div>
 	  <div id="insertimage">
 		  <h5>Insert Image:</h5>
-		  <input type="file" onchange="previewImage(this);">
+		  <input id="furl" type="file" onchange="previewImage(this);">
 		  <h6>Preview:</h6>
 		  <img id="preview">
-		  <button onclick="initi3();">Upload Image on Board</button>
+		  <button onclick="imgavailable()">Add Image to Board</button>
+		  <button onClick="saveimgdata()"> Save location of the Image</button>
 	  </div>
         <div id="linkholder">
           <h5>Links</h5>
@@ -66,7 +67,7 @@
         <p><a href="www.google.com/chrome">Google Chrome</a></p>
         <p><a href="#"></a></p>
       </canvas>
-		<canvas id="canvas2"></canvas>
+		<canvas id="canvas2" height="0" width="0"></canvas>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
     <script type="text/javascript" src="main.js"></script>

@@ -3,19 +3,45 @@
 
 		var canvas2 = document.getElementById("canvas2");
 		var context = canvas2.getContext("2d");
+		var image = document.getElementById("preview");
+
+		var filechooser  = document.getElementById("furl");
 
 		
 		function previewImage(input){
+			// this function is to show preview of image
+			var files = event.target.files;
+			var file = files[0];
+			
+			if(file.type !== '' && !file.type.match('image.*'))
+        {
+			alert("Select valid image file!")
+            return;
+        }
+			else{
+			
 			var reader = new FileReader();
 			reader.onload = function (e){
 				document.getElementById("preview").setAttribute("src", e.target.result);
 			};
 			reader.readAsDataURL(input.files[0]);
+		 }
+		}
+
+		function imgavailable(){
+			
+			if(filechooser.value != ""){
+				initi3();
+			}
+			else{
+				alert("First select Image to upload!");
+			}
+			
 		}
 		
 		function setImage(x, y){
 			
-			var image = document.getElementById("preview");
+	//		var image = document.getElementById("preview");
 			if(!image.complete){
 				setTimeout(function(){
 					setImage(x, y);
@@ -40,26 +66,37 @@ function initi3() {
 	canvas2.addEventListener("pointerup", stop_move);
 	canvas2.addEventListener("pointermove", move);
 }
-var loc ={x:0 , y:0};
+//var loca ={x:0 , y:0};
 var movement = false;
 
 function showCanvas() {
             canvas2.style.visibility = 'visible'; 
-			canvas2.style.width = canv.style.width;
-			canvas2.style.height = canv.style.height;
-	//		canvas2.style.boxShadow = canv.style.boxShadow;
+	//		canv.style.visibility = 'hidden';
+	//		canvas2.style.width = canv.style.width;
+	//		canvas2.style.height = canv.style.height;
+			
+			canvas2.width = window.innerWidth-20;
+			canvas2.height = window.innerHeight-20;
+			canvas2.style.boxShadow = canv.style.boxShadow;
         }
 
-async function locator(event) {
+function hideCanvas() {
+	canvas2.style.visibility = 'hidden';
+	canvas2.width = '0';
+	canvas2.height = '0';
+}
+/*
+async function locate(event) {
   if(event.touches){
-    loc.x = event.touches[0].clientX - canvas2.offsetLeft;
-    loc.y = event.touches[0].clientY - canvas2.offsetTop;
+    loca.x = event.touches[0].clientX - canvas2.offsetLeft;
+    loca.y = event.touches[0].clientY - canvas2.offsetTop;
   }
   else{
-   loc.x = event.clientX - canvas2.offsetLeft;
-   loc.y = event.clientY - canvas2.offsetTop;
+   loca.x = event.clientX - canvas2.offsetLeft;
+   loca.y = event.clientY - canvas2.offsetTop;
   }
 }
+*/
 
 async function start_move(event) {
   event.preventDefault();
@@ -86,5 +123,13 @@ async function move(event){
 function clearpage() {
   context.clearRect(0,0,canvas2.width,canvas2.height);
   context.fillStyle = document.getElementById("boardcolor").value;
-//  context.fillRect(0, 0, canvas2.width, canvas2.height);
+  context.fillRect(0, 0, canvas2.width, canvas2.height);
+}
+
+function saveimgdata(){
+	var imgdata = context.getImageData(loc.x, loc.y, image.width, image.height);
+	cntx.putImageData(imgdata, loc.x, loc.y);
+	clearpage();
+	hideCanvas();
+	
 }
