@@ -8,14 +8,14 @@ var pages = [], pages_pdf = [],page_number=0;
 function new_page() {
   if (pages.length==page_number||pages.length-1==page_number) {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
-    pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);
+    pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);  //since pdf needs jpeg images
     page_number++;
     clear_page();
     //document.getElementById('action5').innerHTML="New Page";
   }
   else if(pages.length>page_number) {
     pages[page_number] = cntx.getImageData(0,0,canv.width,canv.height);
-    pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);
+    pages_pdf[page_number] = canv.toDataURL('image/jpeg',1.0);  //since pdf needs jpeg images
     page_number++;
     cntx.putImageData(pages[page_number],0,0);
     if ((pages.length-1)==page_number) {
@@ -23,6 +23,10 @@ function new_page() {
     }
   }
   else{}
+  
+  if(page_number>0){
+    document.getElementById('action6').disabled=false;
+  }
 }
 
 function previous_page() {
@@ -33,12 +37,12 @@ function previous_page() {
   if(page_number>=1){
     page_number--;
   }
-  else{
-    alert("This is the first page.");
+  //else{
+    //alert("This is the first page.");
     //return;
-  }
+  //}
   if (page_number==0) {
-    document.getElementById('action6').visibility="hidden";
+    document.getElementById('action6').disabled=true;
   }
   cntx.putImageData(pages[page_number],0,0);
   //document.getElementById('action5').innerHTML="";
