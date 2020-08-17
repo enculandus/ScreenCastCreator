@@ -236,7 +236,7 @@ async function write_on_canvas(string, corx, cory) {
   cntx.fillText(string, corx, cory);
 }
 
-//Trying Undo functionality:
+//Undo Redo functionality:
 var undo_arr_index;
 async function update_page_image() {
   var board_image = cntx.getImageData(0,0,canv.width,canv.height);
@@ -245,6 +245,8 @@ async function update_page_image() {
   }
   undo_arr.push(board_image);
   undo_arr_index = undo_arr.length - 1; //array indexing issue
+  button_state_checker();
+  //console.log(undo_arr.length)//for testing
 }
 
 async function undo() {
@@ -252,4 +254,34 @@ async function undo() {
     undo_arr_index -= 1;
     cntx.putImageData(undo_arr[undo_arr_index],0,0);
   }
+  button_state_checker();
 }
+
+async function redo() {
+  if(undo_arr_index<undo_arr.length){
+    undo_arr_index ++;
+    cntx.putImageData(undo_arr[undo_arr_index],0,0);
+  }
+  button_state_checker();
+}
+
+async function button_state_checker() {
+  //enabling and disabling of buttons
+  if (undo_arr_index==0) {
+    document.getElementById('action8').disabled = true;
+  }
+  if(undo_arr_index==(undo_arr.length - 1)){
+    document.getElementById('action9').disabled = true;
+  }
+  if(undo_arr_index>0){
+    document.getElementById('action8').disabled = false;
+  }
+  if(undo_arr_index<(undo_arr.length - 1)){
+    document.getElementById('action9').disabled = false;
+  }
+  //number of undo's that can be done
+  if(undo_arr.length>25){
+    undo_arr.splice(0,(undo_arr.length - 25));
+  }
+}
+//Undo Redo Achieved

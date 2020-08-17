@@ -23,6 +23,10 @@ function new_page() {
     }
   }
   else{}
+  
+  if(page_number>0){
+    document.getElementById('action6').disabled=false;
+  }
 }
 
 function previous_page() {
