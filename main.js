@@ -2,6 +2,8 @@
 //Defined constants
 const canv = document.getElementById('canvas1') ;
 const cntx = canv.getContext('2d');
+const canv3 = document.getElementById('canvas3') ;
+const cntx3 = canv3.getContext('2d');
 const video = document.querySelector('#testv');
 const toolbox = document.getElementById('toolbox');
 const sidein = document.getElementById('sidepanelin');
@@ -44,6 +46,8 @@ function setup() {
   start_pencil();
   toggle_sidepanel();
   update_page_image();
+  //sidein.addEventListener("mouseover",toggle_sidepanel);
+  //toolbox.addEventListener("mouseout", toggle_sidepanel);
   //startup_instructions();
 }
 
@@ -110,17 +114,17 @@ async function locator(event) {
 //drawing functions
 var strok = false;
 
-async function stroke_properties() {
-  cntx.lineCap = 'round';
-  cntx.lineWidth = document.getElementById('strokewidth').value;
-  cntx.strokeStyle = document.getElementById('strokecolor').value;
-  cntx.lineJoin = 'round';
+async function stroke_properties(cntx_name) {
+  cntx_name.lineCap = 'round';
+  cntx_name.lineWidth = document.getElementById('strokewidth').value;
+  cntx_name.strokeStyle = document.getElementById('strokecolor').value;
+  cntx_name.lineJoin = 'round';
 }
 
 async function start_draw(event) {
   event.preventDefault();
   locator(event);
-  stroke_properties();
+  stroke_properties(cntx);
   strok =true;
 }
 
@@ -131,7 +135,6 @@ async function auxillary_stop_draw() {
 
 async function stop_draw(event) {
   strok=false;
-  //update_page_image();
 }
 
 // This function is not yet being used
@@ -164,10 +167,10 @@ async function draw(event) {
   cntx.closePath();
 }
 
-function clear_page() {
-  cntx.clearRect(0,0,canv.width,canv.height);
-  cntx.fillStyle=document.getElementById("boardcolor").value;
-  cntx.fillRect(0, 0, canv.width, canv.height);
+function clear_page(cntx_name) {
+  cntx_name.clearRect(0,0,canv.width,canv.height);
+  cntx_name.fillStyle=document.getElementById("boardcolor").value;
+  cntx_name.fillRect(0, 0, canv.width, canv.height);
 }
 
 //Toggle to eraser
@@ -184,8 +187,13 @@ function start_eraser() {
   //changing button properties
   document.getElementById('eraser').style.color = "white";
   document.getElementById('eraser').style.backgroundColor = "#9392FF";
-  document.getElementById('pencil').style.color = "black";
-  document.getElementById('pencil').style.backgroundColor = "white";
+  stop_pencil();
+  stop_line_drawing();
+}
+
+function stop_eraser() {
+  document.getElementById('eraser').style.color = "black";
+  document.getElementById('eraser').style.backgroundColor = "white";
 }
 
 //Toggle to pencil
@@ -197,12 +205,16 @@ function start_pencil() {
     document.getElementById('strokecolor').value = ostrokecolor;
   }
   //changing button properties
-  document.getElementById('eraser').style.color = "black";
-  document.getElementById('eraser').style.backgroundColor = "white";
+  stop_eraser();
   document.getElementById('pencil').style.color = "white";
   document.getElementById('pencil').style.backgroundColor = "#9392FF";
+  stop_line_drawing();
 }
 
+function stop_pencil() {
+  document.getElementById('pencil').style.color = "black";
+  document.getElementById('pencil').style.backgroundColor = "white";
+}
 
 //loadscript function !!!!important for better page rendering!!!!
 async function loadscript(url, location, notifier_id){
@@ -285,3 +297,76 @@ async function button_state_checker() {
   }
 }
 //Undo Redo Achieved
+
+//Trying line drawing
+async function start_line_drawing() {
+  canv3.addEventListener("touchstart", start_line);
+  canv3.addEventListener("touchmove", draw_line);
+  canv3.addEventListener("touchend", stop_line);
+  canv3.addEventListener("mousedown", start_line);
+  canv3.addEventListener("mousemove", draw_line);
+  canv3.addEventListener("mouseup", stop_line);
+  canv3.addEventListener("pointerdown", start_line);
+  canv3.addEventListener("pointermove", draw_line);
+  canv3.addEventListener("pointerup", stop_line);
+  canv3.width = window.innerWidth-20;
+  canv3.height = window.innerHeight-20;
+  canv3.style.opacity=1;
+  canv3.style.visibility='visible';
+  document.getElementById('lines').style.backgroundColor = "#9392FF";
+  stop_pencil();
+  stop_eraser();
+  //toggle_sidepanel();
+}
+
+async function stop_line_drawing() {
+  canv3.width = 0;
+  canv3.height = 0;
+  canv3.style.opacity=0;
+  canv3.style.backgroundColor="";
+  canv3.style.visibility='hidden';
+  canv3.removeEventListener("touchstart", start_line);
+  canv3.removeEventListener("touchmove", draw_line);
+  canv3.removeEventListener("touchend", stop_line);
+  canv3.removeEventListener("mousedown", start_line);
+  canv3.removeEventListener("mousemove", draw_line);
+  canv3.removeEventListener("mouseup", stop_line);
+  canv3.removeEventListener("pointerdown", start_line);
+  canv3.removeEventListener("pointermove", draw_line);
+  canv3.removeEventListener("pointerup", stop_line);
+  document.getElementById('lines').style.backgroundColor = "white";
+}
+
+async function start_line(event) {
+  event.preventDefault();
+  locator(event);
+  controlPoint.x=loc.x; //used to store the initial point
+  controlPoint.y=loc.y;
+  stroke_properties(cntx3);
+  strok =true;
+}
+
+async function draw_line(event) {
+  if (!strok){return;}
+  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  cntx3.beginPath();
+  cntx3.moveTo(controlPoint.x,controlPoint.y);
+  locator(event);
+  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
+  cntx3.lineTo(loc.x, loc.y);
+  cntx3.stroke();
+  cntx3.closePath();
+}
+
+async function stop_line() {
+  strok = false;  //turn off drawing, and immediately draw the current line to canvas1
+  stroke_properties(cntx);
+  cntx.beginPath();
+  cntx.moveTo(controlPoint.x,controlPoint.y);
+  cntx.lineTo(loc.x, loc.y);
+  cntx.stroke();
+  cntx.closePath();
+  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  update_page_image();
+}
+//line drawing complete

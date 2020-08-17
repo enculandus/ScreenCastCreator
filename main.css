@@ -12,7 +12,7 @@ h5{
 }
 
 #sidepanelin{
-  z-index: 4;
+  z-index: 20;
   background-color: white;
   position: fixed;
   height: 10%;
@@ -57,8 +57,8 @@ h5{
   float: left;
   visibility: hidden;
   margin-left: 10px;
-  z-index: 4;
   //margin-bottom: 20%;
+  z-index: 20;
   overflow-x: hidden;
   overflow-y: scroll;
   position: fixed;
@@ -85,18 +85,6 @@ h5{
 }
 
 #linkholder{
-  width: 100%;
-  float: left;
-  margin: 1% 1%;
-}
-
-#attributions{
-  width: 100%;
-  float: left;
-  margin: 1% 1%;
-}
-
-#insertimage{
   width: 100%;
   float: left;
   margin: 1% 1%;
@@ -153,7 +141,7 @@ input{
 }
 
 .tools{
-  width: 45%;
+  width: 48%;
   margin: 1% 1% 1% 1%;
   float: left;
   padding: 2px 2px 2px 2px;
@@ -177,17 +165,6 @@ input{
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-#canvas2{
-  /*border: 2px solid black;*/
-  z-index: 1;
-  margin: 10px;
-  opacity: 0.25;
-/*  background: #000000;  */
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-}
-
 #testv{
   visibility:hidden;
 }
@@ -196,6 +173,16 @@ input{
     vertical-align: middle;
 }
 
+#canvas3{
+  border-radius: 10px;
+  margin-left: 10px;
+  background-color: ;
+  visibility: hidden;
+  opacity: 0;
+  top: 10px;
+  position: fixed;
+  z-index: 1;
+}
 
 body{
   margin: 0;

@@ -16,6 +16,7 @@
           <h5>Tools</h5>
           <button class="tools" id="pencil" onclick="start_pencil()"><img id="icon" src="Pen.svg"></button>
           <button class="tools" id="eraser" onclick="start_eraser()"><img id="icon" style="width:21px;height:21px" src="eraser.png"></button>
+          <button class="tools" id="lines" onclick="start_line_drawing()" style="width:100%">Draw Lines</button>
           <button class="tools" onclick="document.body.requestFullscreen();full_screen=true"><img id="icon" src="Fullscreen.svg"></button>
           <button class="tools" onclick="resize_info()"><img id="icon" src="Expand.svg"></button>
         </div>
@@ -27,7 +28,7 @@
         </div>
         <div id="actions">
           <h5>Actions</h5>
-          <button class="action" id="action1" onclick="clear_page()"><img id="icon" src="Clear.svg"></button>
+          <button class="action" id="action1" onclick="clear_page(cntx)"><img id="icon" src="Clear.svg"></button>
           <button class="action" id="action2" onclick="start_recording()"><img id="icon" src="Record.svg"></button>
           <button class="action" id="action3" onclick="stop_recording()"><img id="icon" src="Stop.svg"></button>
           <button class="action" id="action4" onclick="download_img()" alt="Download as .jpg"><img id="icon" src="Capture.svg"></button>
@@ -37,14 +38,14 @@
           <button class="action" id="action6" onclick="previous_page()" style="width:100%">Previous Page</button>
           <button class="action" id="action7" onclick="to_pdf()"><img id="icon" src="Document.svg"></button>
         </div>
-	  <div id="insertimage">
-		  <h5>Insert Image:</h5>
-		  <input id="furl" type="file" onchange="previewImage(this);">
-		  <h6>Preview:</h6>
-		  <img id="preview">
-		  <button onclick="imgavailable()">Add Image to Board</button>
-		  <button onClick="saveimgdata()"> Save location of the Image</button>
-	  </div>
+        <div id="insertimage">
+		      <h5>Insert Image:</h5>
+		      <input id="furl" type="file" onchange="previewImage(this);">
+		      <h6>Preview:</h6>
+		      <img id="preview">
+		      <button onclick="imgavailable()">Add Image to Board</button>
+		      <button onClick="saveimgdata()"> Save location of the Image</button>
+	      </div>
         <div id="linkholder">
           <h5>Links</h5>
           <button class="action" onclick="window.open('index.html')" style="width:100%">Home</button>
@@ -69,7 +70,14 @@
         <p><a href="www.google.com/chrome">Google Chrome</a></p>
         <p><a href="#"></a></p>
       </canvas>
-		<canvas id="canvas2" height="0" width="0"></canvas>
+      <canvas id="canvas2" height="0" width="0"></canvas>
+      <canvas id="canvas3" width="0px" height="0px">
+        <p>Your Browser is not supported by this web app. We regret the inconveniance caused.</p>
+        <p>Please try one of these supported browsers:</p>
+        <p><a href="www.mozilla.org">Mozilla Firefox</a></p>
+        <p><a href="www.google.com/chrome">Google Chrome</a></p>
+        <p><a href="#"></a></p>
+      </canvas>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
     <script type="text/javascript" src="main.js"></script>
@@ -77,6 +85,6 @@
     <script type="text/javascript" src="RecordRTC.min.js"></script>
     <script type="text/javascript" src="videocapture.js"></script>
     <script type="text/javascript" src="jspdf.min.js"></script>
-	<script type="text/javascript" src="drawimage.js"></script>
+    <script type="text/javascript" src="drawimage.js"></script>
   </body>
 </html>
