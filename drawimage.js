@@ -22,8 +22,8 @@
 
 			var reader = new FileReader();
 			reader.onload = function (e){
-				document.getElementById("preview").style.height = '100px';
-				document.getElementById("preview").style.width = '90%';
+				//document.getElementById("preview").style.height = '100px';
+				//document.getElementById("preview").style.width = '90%';
 				document.getElementById("preview").setAttribute("src", e.target.result);
 			};
 			reader.readAsDataURL(input.files[0]);
