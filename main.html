@@ -37,6 +37,14 @@
           <button class="action" id="action6" onclick="previous_page()" style="width:100%">Previous Page</button>
           <button class="action" id="action7" onclick="to_pdf()"><img id="icon" src="Document.svg"></button>
         </div>
+	  <div id="insertimage">
+		  <h5>Insert Image:</h5>
+		  <input id="furl" type="file" onchange="previewImage(this);">
+		  <h6>Preview:</h6>
+		  <img id="preview">
+		  <button onclick="imgavailable()">Add Image to Board</button>
+		  <button onClick="saveimgdata()"> Save location of the Image</button>
+	  </div>
         <div id="linkholder">
           <h5>Links</h5>
           <button class="action" onclick="window.open('index.html')" style="width:100%">Home</button>
@@ -61,6 +69,7 @@
         <p><a href="www.google.com/chrome">Google Chrome</a></p>
         <p><a href="#"></a></p>
       </canvas>
+		<canvas id="canvas2" height="0" width="0"></canvas>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
     <script type="text/javascript" src="main.js"></script>
@@ -68,5 +77,6 @@
     <script type="text/javascript" src="RecordRTC.min.js"></script>
     <script type="text/javascript" src="videocapture.js"></script>
     <script type="text/javascript" src="jspdf.min.js"></script>
+	<script type="text/javascript" src="drawimage.js"></script>
   </body>
 </html>
