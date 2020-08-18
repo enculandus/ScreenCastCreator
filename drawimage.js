@@ -12,27 +12,29 @@
 			var files = event.target.files;
 			var file = files[0];
 			toggle_sidepanel();
+		
+		if(file.type !== '' && !file.type.match('image.*'))
+        {
+			alert("Select valid image file!");
+			filechooser.value = "";
+            return;
+        }
+			else{
+		
 			document.getElementById('image_input_menu').style.margin = "7.5% 0% 0% 15%";
 			document.getElementById('image_input_menu').style.height = "70%";
 			document.getElementById('image_input_menu').style.width = "70%";
 			document.getElementById('image_input_menu').style.visibility = "visible";
-
-			if(file.type !== '' && !file.type.match('image.*'))
-        {
-			alert("Select valid image file!")
-            return;
-        }
-			else{
 
 			var reader = new FileReader();
 			reader.onload = function (e){
 				document.getElementById("preview").setAttribute("src", e.target.result);
 			};
 			reader.readAsDataURL(input.files[0]);
-		 }
 		 document.getElementById("input_image_width").addEventListener("input", resize_input_image ,{passive: true});
 		 document.getElementById("input_image_height").addEventListener("input", resize_input_image ,{passive: true});
 		}
+	}
 
 async function resize_input_image() {
 	document.getElementById("preview").style.height = document.getElementById("input_image_height").value + "px";
@@ -167,5 +169,6 @@ async function copy(){
 	cntx.putImageData(imgdata, (loc.x-(document.getElementById("input_image_width").value/2)), (loc.y-(document.getElementById("input_image_height").value/2)));
 	clearpage();
 	hideCanvas();
+	filechooser.value = "";
 
 }
