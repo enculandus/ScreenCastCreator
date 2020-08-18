@@ -43,7 +43,7 @@ function setup() {
   toolbox.style.height=(window.innerHeight-44)+'px';
   board_color();
   toggle_sidepanel();
-  start_pencil();
+  //start_pencil();
   toggle_sidepanel();
   update_page_image();
   //sidein.addEventListener("mouseover",toggle_sidepanel);
@@ -174,46 +174,41 @@ function clear_page(cntx_name) {
 }
 
 //Toggle to eraser
-var ostrokewidth, ostrokecolor;
+var pstrokewidth = 5;
+var pstrokecolor ;
+var estrokewidth = 30;  //setting strokewidth to 30
+var estrokecolor = document.getElementById("boardcolor").value;
+var lstrokewidth = document.getElementById("strokewidth").value;
+var lstrokecolor = document.getElementById('strokecolor').value;
+
 function start_eraser() {
-  //changing strokewidth to 30
-  if(document.getElementById('pencil').style.color == "white"){
-    ostrokewidth = document.getElementById('strokewidth').value;
-    document.getElementById('strokewidth').value = 30;
-    //storing previous strokecolor and changing it to background color
-    ostrokecolor = document.getElementById('strokecolor').value;
-    document.getElementById('strokecolor').value = document.getElementById("boardcolor").value;
-  }
-  //changing button properties
-  document.getElementById('eraser').style.color = "white";
-  document.getElementById('eraser').style.backgroundColor = "#9392FF";
   stop_pencil();
   stop_line_drawing();
+  document.getElementById("strokewidth").value = estrokewidth;
+  document.getElementById('strokecolor').value = document.getElementById("boardcolor").value;
+  //changing button properties
+  document.getElementById('eraser').style.backgroundColor = "#9392FF";
 }
 
 function stop_eraser() {
-  document.getElementById('eraser').style.color = "black";
   document.getElementById('eraser').style.backgroundColor = "white";
+  //estrokewidth = document.getElementById('strokewidth').value;  //this is causing problems while shifting b/w different tools
 }
 
 //Toggle to pencil
 function start_pencil() {
-  if(document.getElementById('eraser').style.color == "white"){
-    //changing strokewidth back to original
-    document.getElementById('strokewidth').value = ostrokewidth;
-    //schanging it to background color
-    document.getElementById('strokecolor').value = ostrokecolor;
-  }
-  //changing button properties
   stop_eraser();
-  document.getElementById('pencil').style.color = "white";
-  document.getElementById('pencil').style.backgroundColor = "#9392FF";
   stop_line_drawing();
+  document.getElementById("strokewidth").value = pstrokewidth;
+  document.getElementById('strokecolor').value = pstrokecolor;
+  //changing button properties
+  document.getElementById('pencil').style.backgroundColor = "#9392FF";
 }
 
 function stop_pencil() {
-  document.getElementById('pencil').style.color = "black";
   document.getElementById('pencil').style.backgroundColor = "white";
+  pstrokewidth = document.getElementById('strokewidth').value;
+  pstrokecolor = document.getElementById('strokecolor').value;
 }
 
 //loadscript function !!!!important for better page rendering!!!!
@@ -300,6 +295,9 @@ async function button_state_checker() {
 
 //Trying line drawing
 async function start_line_drawing() {
+  stop_eraser();
+  start_pencil();
+  stop_pencil();
   canv3.addEventListener("touchstart", start_line);
   canv3.addEventListener("touchmove", draw_line);
   canv3.addEventListener("touchend", stop_line);
@@ -314,8 +312,7 @@ async function start_line_drawing() {
   canv3.style.opacity=1;
   canv3.style.visibility='visible';
   document.getElementById('lines').style.backgroundColor = "#9392FF";
-  stop_pencil();
-  stop_eraser();
+  document.getElementById('strokecolor').value = pstrokecolor;
   //toggle_sidepanel();
 }
 

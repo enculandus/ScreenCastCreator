@@ -25,11 +25,17 @@ async function start_recording() {
       type: 'canvas',
       mimeType:'video/webm',
       video:{width:canv.width, height:canv.height},
-      frameInterval: 70,
+      frameInterval: 40,
   });
 
   //starting recorder
   recorder.startRecording();
+  //putting up logo
+  cntx.font = "15px Arial";
+  cntx.fillStyle="white";
+  cntx.fillText("C",5, canv.height-10);
+  cntx.font = "10px Arial";
+  cntx.fillText("C",17, canv.height-15.5);
 
   console.log("recording started");
 

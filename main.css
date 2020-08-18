@@ -176,6 +176,10 @@ input{
   fill:white;
 }
 
+#pencil{
+  background-color: #9392FF;
+}
+
 #canvas1{
   border-radius: 10px;
   margin:10px;
@@ -185,13 +189,14 @@ input{
 
 #canvas2{
   /*border: 2px solid black;*/
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
   z-index: 1;
-  margin: 10px;
-  opacity: 0.25;
-/*  background: #000000;  */
+  opacity:  1;
   position: absolute;
-  top: 10px;
-  bottom: 10px;
+  //top: 10px;
+  //bottom: 10px;
 }
 
 #testv{

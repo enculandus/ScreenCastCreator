@@ -4,7 +4,6 @@
 		var canvas2 = document.getElementById("canvas2");
 		var context = canvas2.getContext("2d");
 		var image = document.getElementById("preview");
-
 		var filechooser  = document.getElementById("furl");
 
 
@@ -22,8 +21,6 @@
 
 			var reader = new FileReader();
 			reader.onload = function (e){
-				//document.getElementById("preview").style.height = '100px';
-				//document.getElementById("preview").style.width = '90%';
 				document.getElementById("preview").setAttribute("src", e.target.result);
 			};
 			reader.readAsDataURL(input.files[0]);
