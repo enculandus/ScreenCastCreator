@@ -41,10 +41,6 @@
         <div id="insertimage">
 		      <h5>Insert Image:</h5>
 		      <input id="furl" style="width:100%" type="file" onchange="previewImage(this);">
-		      <h6>Preview:</h6>
-		      <img id="preview">
-		      <button class="action" style="width:100%" onclick="imgavailable()">Add Image to Board</button>
-		      <button class="action" style="width:100%" onClick="saveimgdata()"> Save location of the Image</button>
 	      </div>
         <div id="linkholder">
           <h5>Links</h5>
@@ -78,6 +74,17 @@
         <p><a href="www.google.com/chrome">Google Chrome</a></p>
         <p><a href="#"></a></p>
       </canvas>
+      <div id="image_input_menu">
+        <h5>Preview:</h5>
+        <label style="width:48%;float:left">Width:<input type="number" class="input_image_dimensions" id="input_image_width" name="input_image_width" value="300"></label>
+        <label style="width:48%;float:left">Height:<input type="number" class="input_image_dimensions" id="input_image_height" name="input_image_height" value="200"></label>
+        <img id="preview">
+        <button class="action" style="width:100%" onclick="imgavailable()">Add Image to Board</button>
+      </div>
+      <div id="image_placement_box">
+        <button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button>
+        <button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>
+      </div>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
     <script type="text/javascript" src="main.js"></script>

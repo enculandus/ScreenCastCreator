@@ -199,6 +199,31 @@ input{
   //bottom: 10px;
 }
 
+#image_input_menu{
+  border-radius: 10px;
+  z-index: 3;
+  margin-top: 0px;
+  margin-left: 0px;
+  height:0px;
+  width:0px;
+  position: absolute;
+  visibility: hidden;
+  opacity: 1;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  background-color: #ffffff;
+}
+
+#image_placement_box{
+  border-radius: 10px;
+  background-color: #ffffff;
+  z-index: 4;
+  width: 0px;
+  height: 0px;
+  visibility: hidden;
+  position: absolute;
+}
+
 #testv{
   visibility:hidden;
 }
@@ -216,6 +241,10 @@ input{
   top: 10px;
   position: fixed;
   z-index: 1;
+}
+
+.input_image_dimensions{
+  //width: 48%;
 }
 
 body{
