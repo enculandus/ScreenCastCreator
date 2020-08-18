@@ -182,23 +182,25 @@ var lstrokewidth = document.getElementById("strokewidth").value;
 var lstrokecolor = document.getElementById('strokecolor').value;
 
 function start_eraser() {
-  stop_pencil();
-  stop_line_drawing();
+  tool_toggler();
+  isEraserOn=true;
   document.getElementById("strokewidth").value = estrokewidth;
   document.getElementById('strokecolor').value = document.getElementById("boardcolor").value;
   //changing button properties
   document.getElementById('eraser').style.backgroundColor = "#9392FF";
+  isEraserOn=true;
 }
 
 function stop_eraser() {
   document.getElementById('eraser').style.backgroundColor = "white";
+  isEraserOn=false;
   //estrokewidth = document.getElementById('strokewidth').value;  //this is causing problems while shifting b/w different tools
 }
 
 //Toggle to pencil
 function start_pencil() {
-  stop_eraser();
-  stop_line_drawing();
+  tool_toggler();
+  isPencilOn=true;
   document.getElementById("strokewidth").value = pstrokewidth;
   document.getElementById('strokecolor').value = pstrokecolor;
   //changing button properties
@@ -206,6 +208,7 @@ function start_pencil() {
 }
 
 function stop_pencil() {
+  isPencilOn=false;
   document.getElementById('pencil').style.backgroundColor = "white";
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
@@ -293,11 +296,23 @@ async function button_state_checker() {
 }
 //Undo Redo Achieved
 
+//tool toggler
+var isPencilOn=true, isEraserOn=false, isLineOn=false;
+async function tool_toggler() {
+  if(isPencilOn){
+    stop_pencil();
+  }
+  if(isEraserOn){
+    stop_eraser();
+  }
+  if(isLineOn){
+    stop_line_drawing();
+  }
+}
+
 //Trying line drawing
 async function start_line_drawing() {
-  stop_eraser();
-  start_pencil();
-  stop_pencil();
+  tool_toggler();
   canv3.addEventListener("touchstart", start_line);
   canv3.addEventListener("touchmove", draw_line);
   canv3.addEventListener("touchend", stop_line);
@@ -313,6 +328,8 @@ async function start_line_drawing() {
   canv3.style.visibility='visible';
   document.getElementById('lines').style.backgroundColor = "#9392FF";
   document.getElementById('strokecolor').value = pstrokecolor;
+  document.getElementById('strokewidth').value = pstrokewidth;
+  isLineOn=true;
   //toggle_sidepanel();
 }
 
@@ -332,6 +349,9 @@ async function stop_line_drawing() {
   canv3.removeEventListener("pointermove", draw_line);
   canv3.removeEventListener("pointerup", stop_line);
   document.getElementById('lines').style.backgroundColor = "white";
+  pstrokewidth = document.getElementById('strokewidth').value;
+  pstrokecolor = document.getElementById('strokecolor').value;
+  isLineOn=false;
 }
 
 async function start_line(event) {
