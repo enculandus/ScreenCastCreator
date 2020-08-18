@@ -38,6 +38,7 @@ async function start_recording() {
 
   //starting recorder
   recorder.startRecording();
+  document.getElementById('action10').disabled=false;
   //putting up logo
   cntx.font = "15px Arial";
   cntx.fillStyle="white";
@@ -72,7 +73,7 @@ async function stop_recording() {
   streamholder=[];
 
   document.body.style.backgroundColor='white';
-
+  document.getElementById('action10').disabled="true";
   document.getElementById('action2').style.backgroundColor='white';
   document.getElementById('action2').style.color='black';
   alert("Refresh the page if you want to make another recording. Do not forget to dowload the recorded videos when prompted. They will otherwise be lost.");
@@ -85,6 +86,27 @@ async function track_stopper(mystream) {
     console.log('stopped')
   });
 }
+
+async function toggle_recording() {
+  if(!audiostream){
+    document.getElementById('action10').disabled="true";
+  }
+  else if (recorder.getState()=="recording") {
+    recorder.pauseRecording();
+  }
+  else if (recorder.getState()=="paused") {
+    recorder.resumeRecording();
+  }
+  else {//do nothing
+  }
+
+  /*try{
+    recorder.pauseRecording();
+  } catch(e){
+
+  }*/
+}
+
 var cam_stream;
 async function show_camera() {
   try{
