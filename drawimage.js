@@ -13,7 +13,7 @@
 			var files = event.target.files;
 			var file = files[0];
 			toggle_sidepanel();
-		
+
 		if(file.type !== '' && !file.type.match('image.*'))
         {
 			alert("Select valid image file!");
@@ -21,7 +21,7 @@
             return;
         }
 			else{
-		
+
 			document.getElementById('image_input_menu').style.margin = "7.5% 0% 0% 15%";
 			document.getElementById('image_input_menu').style.height = "70%";
 			document.getElementById('image_input_menu').style.width = "70%";
@@ -75,8 +75,8 @@ async function setImage(x, y){
 				context.font = "30px Arial";
 				context.fillStyle = "white";
 				context.fillText("Tip:Drag The image to its desired location", 86, canv.height-25);
-				context.drawImage(image, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
 			}
+			context.drawImage(image, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
 		}
 
 async function initi3() {

@@ -432,7 +432,7 @@ async function stop_circle_drawing() {
   canv3.removeEventListener("pointerdown", start_circle);
   canv3.removeEventListener("pointermove", draw_circle);
   canv3.removeEventListener("pointerup", stop_circle);
-  document.getElementById('lines').style.backgroundColor = "white";
+  document.getElementById('circle').style.backgroundColor = "white";
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
   isCircleOn=false;
@@ -500,7 +500,7 @@ async function start_rect_drawing() {
   canv3.height = window.innerHeight-20;
   canv3.style.opacity=1;
   canv3.style.visibility='visible';
-  document.getElementById('lines').style.backgroundColor = "#9392FF";
+  document.getElementById('rectangle').style.backgroundColor = "#9392FF";
   document.getElementById('strokecolor').value = pstrokecolor;
   document.getElementById('strokewidth').value = pstrokewidth;
   isRectOn=true;
@@ -522,7 +522,7 @@ async function stop_rect_drawing() {
   canv3.removeEventListener("pointerdown", start_rect);
   canv3.removeEventListener("pointermove", draw_rect);
   canv3.removeEventListener("pointerup", stop_rect);
-  document.getElementById('lines').style.backgroundColor = "white";
+  document.getElementById('rectangle').style.backgroundColor = "white";
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
   isRectOn=false;
