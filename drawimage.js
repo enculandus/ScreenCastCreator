@@ -48,7 +48,7 @@ async function resize_input_image() {
 			document.getElementById('image_placement_box').style.visibility = "visible";
 			document.getElementById('image_placement_box').style.height = "50px";
 			document.getElementById('image_placement_box').style.width = "90px";
-			document.getElementById('image_placement_box').style.margin = "80% 0% 0% 0%";
+			document.getElementById('image_placement_box').style.margin = "20% 0% 0% 0%";
 
 			if(filechooser.value != ""){
 				initi3();
