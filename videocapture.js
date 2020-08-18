@@ -11,9 +11,17 @@ var recorder;
 async function start_recording() {
   //requesting audio and video stream
   //for audio
-  audiostream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true}});
+  try{
+    audiostream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true}});
+  } catch(error){
+    console.log(error);
+  }
   //getting stream of canvas only
-  videostream = document.querySelector('canvas').captureStream(20);
+  try{
+    videostream = document.querySelector('canvas').captureStream(20);
+  } catch(error){
+    console.log(error);
+  }
   //videostream = await navigator.mediaDevices.getDisplayMedia(); //alternate
   //for testing
   //video.srcObject = videostream;
@@ -25,7 +33,7 @@ async function start_recording() {
       type: 'canvas',
       mimeType:'video/webm',
       video:{width:canv.width, height:canv.height},
-      frameInterval: 40,
+      frameInterval: 60,
   });
 
   //starting recorder
@@ -76,4 +84,17 @@ async function track_stopper(mystream) {
     track.stop();
     console.log('stopped')
   });
+}
+var cam_stream;
+async function show_camera() {
+  try{
+    cam_stream = await navigator.mediaDevices.getUserMedia({video:true});
+  } catch(error){
+    console.log(error);
+  }
+  window.setInterval(function() {cntx.drawImage(cam_stream,controlPoint.x,controlPoint.y,260,125)},50);
+}
+
+async function share_screen() {
+
 }
