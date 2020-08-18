@@ -16,10 +16,15 @@
           <h5>Tools</h5>
           <button class="tools" id="pencil" onclick="start_pencil()"><img id="icon" src="Pen.svg"></button>
           <button class="tools" id="eraser" onclick="start_eraser()"><img id="icon" style="width:21px;height:21px" src="eraser.png"></button>
-          <button class="tools" id="lines" onclick="start_line_drawing()" style="width:100%">Draw Lines</button>
           <button class="tools" onclick="document.body.requestFullscreen();full_screen=true"><img id="icon" src="Fullscreen.svg"></button>
           <button class="tools" onclick="resize_info()"><img id="icon" src="Expand.svg"></button>
         </div>
+		<div id="drawingtools">
+			<h5>Drawing Tools</h5>
+			<button class="tools" id="lines" onclick="start_line_drawing()" style="width:100%">Draw Lines</button>
+			<button class="tools" id="circle" onClick="start_circle_drawing()" style="width: 100%">Draw Circles</button>
+			<button class="tools" id="rectangle" onClick="start_rect_drawing()" style="width: 100%">Draw Rectangles</button>
+		</div>
         <div id="toolproperties">
           <h5>Tool Properties</h5>
           <div id="properties" style="width:85%">Stroke:<input id="strokewidth"  value="5" type="number" placeholder="Example: 1"></input></div>

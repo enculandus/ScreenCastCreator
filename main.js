@@ -297,7 +297,7 @@ async function button_state_checker() {
 //Undo Redo Achieved
 
 //tool toggler
-var isPencilOn=true, isEraserOn=false, isLineOn=false;
+var isPencilOn=true, isEraserOn=false, isLineOn=false, isCircleOn=false, isRectOn=false;
 async function tool_toggler() {
   if(isPencilOn){
     stop_pencil();
@@ -308,6 +308,12 @@ async function tool_toggler() {
   if(isLineOn){
     stop_line_drawing();
   }
+	if(isCircleOn){
+		stop_circle_drawing();
+	}
+	if(isRectOn){
+		stop_rect_drawing();
+	}
 }
 
 //Trying line drawing
@@ -387,3 +393,179 @@ async function stop_line() {
   update_page_image();
 }
 //line drawing complete
+
+//Trying circle drawing
+async function start_circle_drawing() {
+  tool_toggler();
+  canv3.addEventListener("touchstart", start_circle);
+  canv3.addEventListener("touchmove", draw_circle);
+  canv3.addEventListener("touchend", stop_circle);
+  canv3.addEventListener("mousedown", start_circle);
+  canv3.addEventListener("mousemove", draw_circle);
+  canv3.addEventListener("mouseup", stop_circle);
+  canv3.addEventListener("pointerdown", start_circle);
+  canv3.addEventListener("pointermove", draw_circle);
+  canv3.addEventListener("pointerup", stop_circle);
+  canv3.width = window.innerWidth-20;
+  canv3.height = window.innerHeight-20;
+  canv3.style.opacity=1;
+  canv3.style.visibility='visible';
+  document.getElementById('circle').style.backgroundColor = "#9392FF";
+  document.getElementById('strokecolor').value = pstrokecolor;
+  document.getElementById('strokewidth').value = pstrokewidth;
+  isCircleOn=true;
+  //toggle_sidepanel();
+}
+
+async function stop_circle_drawing() {
+  canv3.width = 0;
+  canv3.height = 0;
+  canv3.style.opacity=0;
+  canv3.style.backgroundColor="";
+  canv3.style.visibility='hidden';
+  canv3.removeEventListener("touchstart", start_circle);
+  canv3.removeEventListener("touchmove", draw_circle);
+  canv3.removeEventListener("touchend", stop_circle);
+  canv3.removeEventListener("mousedown", start_circle);
+  canv3.removeEventListener("mousemove", draw_circle);
+  canv3.removeEventListener("mouseup", stop_circle);
+  canv3.removeEventListener("pointerdown", start_circle);
+  canv3.removeEventListener("pointermove", draw_circle);
+  canv3.removeEventListener("pointerup", stop_circle);
+  document.getElementById('lines').style.backgroundColor = "white";
+  pstrokewidth = document.getElementById('strokewidth').value;
+  pstrokecolor = document.getElementById('strokecolor').value;
+  isCircleOn=false;
+}
+
+async function start_circle(event) {
+  event.preventDefault();
+  locator(event);
+  controlPoint.x=loc.x; //used to store the initial point
+  controlPoint.y=loc.y;
+  stroke_properties(cntx3);
+  strok =true;
+}
+
+async function draw_circle(event) {
+  if (!strok){return;}
+  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  cntx3.beginPath();
+ // cntx3.moveTo(controlPoint.x,controlPoint.y);
+  locator(event);
+  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
+	var radius;
+	if((loc.x-controlPoint.x)<0){
+		radius = controlPoint.x - loc.x;
+	}else{
+		radius = loc.x-controlPoint.x;
+	}
+  cntx3.arc(controlPoint.x,controlPoint.y,radius,0*Math.PI,2*Math.PI);
+  cntx3.stroke();
+}
+
+async function stop_circle() {
+  strok = false;  //turn off drawing, and immediately draw the current line to canvas1
+  stroke_properties(cntx);
+	var radius;
+	if((loc.x-controlPoint.x)<0){
+		radius = controlPoint.x - loc.x;
+	}else{
+		radius = loc.x-controlPoint.x;
+	}
+  cntx.beginPath();
+ // cntx.moveTo(controlPoint.x,controlPoint.y);
+ // cntx.lineTo(loc.x, loc.y);
+	cntx.arc(controlPoint.x,controlPoint.y,radius,0*Math.PI,2*Math.PI);
+  cntx.stroke();
+  cntx.closePath();
+  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  update_page_image();
+}
+//circle drawing complete
+
+//Trying line drawing
+async function start_rect_drawing() {
+  tool_toggler();
+  canv3.addEventListener("touchstart", start_rect);
+  canv3.addEventListener("touchmove", draw_rect);
+  canv3.addEventListener("touchend", stop_rect);
+  canv3.addEventListener("mousedown", start_rect);
+  canv3.addEventListener("mousemove", draw_rect);
+  canv3.addEventListener("mouseup", stop_rect);
+  canv3.addEventListener("pointerdown", start_rect);
+  canv3.addEventListener("pointermove", draw_rect);
+  canv3.addEventListener("pointerup", stop_rect);
+  canv3.width = window.innerWidth-20;
+  canv3.height = window.innerHeight-20;
+  canv3.style.opacity=1;
+  canv3.style.visibility='visible';
+  document.getElementById('lines').style.backgroundColor = "#9392FF";
+  document.getElementById('strokecolor').value = pstrokecolor;
+  document.getElementById('strokewidth').value = pstrokewidth;
+  isRectOn=true;
+  //toggle_sidepanel();
+}
+
+async function stop_rect_drawing() {
+  canv3.width = 0;
+  canv3.height = 0;
+  canv3.style.opacity=0;
+  canv3.style.backgroundColor="";
+  canv3.style.visibility='hidden';
+  canv3.removeEventListener("touchstart", start_rect);
+  canv3.removeEventListener("touchmove", draw_rect);
+  canv3.removeEventListener("touchend", stop_rect);
+  canv3.removeEventListener("mousedown", start_rect);
+  canv3.removeEventListener("mousemove", draw_rect);
+  canv3.removeEventListener("mouseup", stop_rect);
+  canv3.removeEventListener("pointerdown", start_rect);
+  canv3.removeEventListener("pointermove", draw_rect);
+  canv3.removeEventListener("pointerup", stop_rect);
+  document.getElementById('lines').style.backgroundColor = "white";
+  pstrokewidth = document.getElementById('strokewidth').value;
+  pstrokecolor = document.getElementById('strokecolor').value;
+  isRectOn=false;
+}
+
+async function start_rect(event) {
+  event.preventDefault();
+  locator(event);
+  controlPoint.x=loc.x; //used to store the initial point
+  controlPoint.y=loc.y;
+  stroke_properties(cntx3);
+  strok =true;
+}
+
+async function draw_rect(event) {
+  if (!strok){return;}
+  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  cntx3.beginPath();
+  cntx3.moveTo(controlPoint.x,controlPoint.y);
+  locator(event);
+  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
+	cntx3.lineTo(loc.x, controlPoint.y);
+	cntx3.lineTo(loc.x, loc.y);
+	cntx3.lineTo(controlPoint.x, loc.y);
+	cntx3.lineTo(controlPoint.x,controlPoint.y);
+	cntx3.moveTo(loc.x,loc.y);
+  cntx3.stroke();
+  cntx3.closePath();
+}
+
+async function stop_rect() {
+  strok = false;  //turn off drawing, and immediately draw the current line to canvas1
+  stroke_properties(cntx);
+  cntx.beginPath();
+	cntx.moveTo(controlPoint.x,controlPoint.y);
+	cntx.lineTo(loc.x, controlPoint.y);
+	cntx.lineTo(loc.x, loc.y);
+	cntx.lineTo(controlPoint.x, loc.y);
+	cntx.lineTo(controlPoint.x,controlPoint.y);
+	cntx.moveTo(loc.x,loc.y);
+  cntx.stroke();
+  cntx.closePath();
+  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  update_page_image();
+}
+//rectangle drawing complete

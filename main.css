@@ -84,6 +84,12 @@ h6{
   margin: 1% 1%;
 }
 
+#drawingtools{
+  width:100%;
+  float: left;
+  margin: 1% 1%;
+}
+
 #toolproperties{
   width: 100%;
   float: left;
@@ -195,8 +201,8 @@ input{
   z-index: 1;
   opacity:  1;
   position: absolute;
-  //top: 10px;
-  //bottom: 10px;
+  top: 10px;
+  bottom: 10px;
 }
 
 #image_input_menu{

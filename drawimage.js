@@ -9,6 +9,7 @@
 
 	async	function previewImage(input){
 			// this function is to show preview of image
+			tool_toggler();
 			var files = event.target.files;
 			var file = files[0];
 			toggle_sidepanel();
