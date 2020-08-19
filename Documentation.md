@@ -1,9 +1,11 @@
-**Libraries Used**
+*Libraries Used
+
 -RecordRTC
 -JsPDF
 -Google fonts script
 
-**Features**
+*Features
+
 -Record Drawing Video
 -Capture Image as PDF
 -Drawing specific shapes
