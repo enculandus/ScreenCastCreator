@@ -29,7 +29,7 @@ h6{
 #sidepanelout{
   width: 35%;
   float: right;
-  height: 11%;
+  /*height: 11%;
   /*align: center;*/
   padding-top: 1%;
 }
