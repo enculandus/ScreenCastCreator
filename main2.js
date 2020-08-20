@@ -205,10 +205,6 @@ async function hideCanvas() {
 		recorder.resumeRecording();
 	}
   notifier_control('',"0%","0%","hidden");
-	document.getElementById('image_placement_box').style.margin = "0px 0px 0px 0px";
-	document.getElementById('image_placement_box').style.height = "0%";
-	document.getElementById('image_placement_box').style.width = "0%";
-	document.getElementById('image_placement_box').style.visibility = "hidden";
 }
 
 async function start_move(event) {
@@ -357,35 +353,24 @@ async function stop_rect_select() {
 var wth, hht, imgData;
 
 async function showcutcopybox(){
-	document.getElementById('copy_cut_box').style.margin = "7.5% 0% 0% 15%";
-	document.getElementById('copy_cut_box').style.height = "50%";
-	document.getElementById('copy_cut_box').style.width = "70%";
-	document.getElementById('copy_cut_box').style.visibility = "visible";
+	notifier_control('<button class="action" id="copy" onclick="ifcopy()"> Copy </button><button class="action" id="cut" onclick="ifcut()"> Cut </button>',"25%","80%","visible");
 }
 
 async function showselectionbox(){
-	document.getElementById('selection_placement_box').style.visibility = "visible";
-	document.getElementById('selection_placement_box').style.height = "25px";
-	document.getElementById('selection_placement_box').style.width = "25px";
-	document.getElementById('selection_placement_box').style.margin = "20% 0% 0% 0%";
+  notifier_control('',"0%","0%","hidden");
+  notifier_control('<button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>',"25%","80%","visible");
 	stop_select_function();
 	initi4();
 }
 
 async function ifcopy(){
-	document.getElementById('copy_cut_box').style.margin = "0px 0px 0px 0px";
-	document.getElementById('copy_cut_box').style.height = "0%";
-	document.getElementById('copy_cut_box').style.width = "0%";
-	document.getElementById('copy_cut_box').style.visibility = "hidden";
+  notifier_control('',"0%","0%","hidden");
 	showselectionbox();
 }
 
 async function ifcut(){
-	document.getElementById('copy_cut_box').style.margin = "0px 0px 0px 0px";
-	document.getElementById('copy_cut_box').style.height = "0%";
-	document.getElementById('copy_cut_box').style.width = "0%";
-	document.getElementById('copy_cut_box').style.visibility = "hidden";
-	cntx.fillStyle = document.getElementById("boardcolor").value;
+  notifier_control('',"0%","0%","hidden");
+  cntx.fillStyle = document.getElementById("boardcolor").value;
 	cntx.fillRect(controlPoint.x,controlPoint.y,wth,hht);
 	showselectionbox();
 }
@@ -448,21 +433,14 @@ async function saveselectdata(){
 	cntx.putImageData(imgdata, loc.x, loc.y);
 	clearpag();
 	hideCanvass();
-	document.getElementById('selection_placement_box').style.margin = "0px 0px 0px 0px";
-	document.getElementById('selection_placement_box').style.height = "0%";
-	document.getElementById('selection_placement_box').style.width = "0%";
-	document.getElementById('selection_placement_box').style.visibility = "hidden";
 	update_page_image();
+  notifier_control('',"0%","0%","hidden");
 }
 
 async function hideCanvass() {
 	canvas2.style.visibility = 'hidden';
 	canvas2.width = '0';
 	canvas2.height = '0';
-	document.getElementById('selection_placement_box').style.margin = "0px 0px 0px 0px";
-	document.getElementById('selection_placement_box').style.height = "0%";
-	document.getElementById('selection_placement_box').style.width = "0%";
-	document.getElementById('selection_placement_box').style.visibility = "hidden";
 }
 
 //notification opening and closing
