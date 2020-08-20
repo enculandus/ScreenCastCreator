@@ -130,10 +130,13 @@ async function resize_input_image() {
 			document.getElementById('image_input_menu').style.height = "0%";
 			document.getElementById('image_input_menu').style.width = "0%";
 			document.getElementById('image_input_menu').style.visibility = "hidden";
-			document.getElementById('image_placement_box').style.visibility = "visible";
-			document.getElementById('image_placement_box').style.height = "50px";
-			document.getElementById('image_placement_box').style.width = "90px";
-			document.getElementById('image_placement_box').style.margin = "20% 0% 0% 0%";
+
+      notifier_control('<button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button><button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>',"25%","80%","visible");
+
+      //document.getElementById('image_placement_box').style.visibility = "visible";
+			//document.getElementById('image_placement_box').style.height = "50px";
+			//document.getElementById('image_placement_box').style.width = "90px";
+			//document.getElementById('image_placement_box').style.margin = "20% 0% 0% 0%";
 
 			if(filechooser.value != ""){
 				initi3();
@@ -156,7 +159,7 @@ async function setImage(x, y){
 			if(canv.width>canv.height){
 				context.font = "30px Arial";
 				context.fillStyle = "white";
-				context.fillText("Tip:Drag The image to its desired location", 86, canv.height-25);
+				context.fillText("Tip:Drag The image to its desired location", 10 , canvas2.height-100);
 			}
 			context.drawImage(image, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
 		}
@@ -201,6 +204,7 @@ async function hideCanvas() {
 	if(audiostream){
 		recorder.resumeRecording();
 	}
+  notifier_control('',"0%","0%","hidden");
 	document.getElementById('image_placement_box').style.margin = "0px 0px 0px 0px";
 	document.getElementById('image_placement_box').style.height = "0%";
 	document.getElementById('image_placement_box').style.width = "0%";
@@ -242,6 +246,7 @@ async function saveimgdata(){
 			else{
 				alert("First select Image to upload!");
 			}
+      notifier_control('',"0%","0%","hidden");
 			document.getElementById('image_placement_box').style.margin = "0px 0px 0px 0px";
 			document.getElementById('image_placement_box').style.height = "0%";
 			document.getElementById('image_placement_box').style.width = "0%";
@@ -297,7 +302,7 @@ async function stop_select_function() {
   canv3.removeEventListener("pointerdown", start_rect_select);
   canv3.removeEventListener("pointermove", draw_rect_select);
   canv3.removeEventListener("pointerup", stop_rect_select);
-  document.getElementById('rectangle').style.backgroundColor = "white";
+  document.getElementById('select').style.backgroundColor = "white";
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
   isSelectOn=false;
@@ -438,7 +443,7 @@ async function clearpag() {
 }
 
 async function saveselectdata(){
-	
+
 	var imgdata = context.getImageData(loc.x, loc.y, wth, hht);
 	cntx.putImageData(imgdata, loc.x, loc.y);
 	clearpag();
@@ -459,3 +464,5 @@ async function hideCanvass() {
 	document.getElementById('selection_placement_box').style.width = "0%";
 	document.getElementById('selection_placement_box').style.visibility = "hidden";
 }
+
+//notification opening and closing

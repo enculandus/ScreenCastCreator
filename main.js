@@ -51,12 +51,15 @@ function setup() {
   //startup_instructions();
 }
 
-function board_color() {
+async function board_color() {
   //changing background color of canvas
   canv.style.backgroundColor = document.getElementById("boardcolor").value;
+  notifier_control('please wait',"25%","80%","visible");
+  //sleep(1000);
   //filling the canvas with a color
   cntx.fillStyle=document.getElementById("boardcolor").value;
   cntx.fillRect(0, 0, canv.width, canv.height);
+  notifier_control('',"0%","0%","hidden");
 }
 
 var full_screen=false;
@@ -572,3 +575,12 @@ async function stop_rect() {
   update_page_image();
 }
 //rectangle drawing complete
+
+//notification functions
+async function notifier_control(message, notifier_margin_left, notifier_margin_top, notifier_visibility) {
+  document.getElementById('notifier1').style.margin = notifier_margin_top + "0% 0%" + notifier_margin_left;
+  //document.getElementById('image_placement_box').style.height = "0%";
+  //document.getElementById('image_placement_box').style.width = "0%";
+  document.getElementById('notifier1').style.visibility = notifier_visibility;
+  document.getElementById('notifier1').innerHTML = message;
+}
