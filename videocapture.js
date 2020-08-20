@@ -93,9 +93,12 @@ async function toggle_recording() {
   }
   else if (recorder.getState()=="recording") {
     recorder.pauseRecording();
+    notifier_control('Recording Paused',"25%","80%","visible");
+    document.body.style.backgroundColor='green';
   }
   else if (recorder.getState()=="paused") {
     recorder.resumeRecording();
+    notifier_control('',"0%","0%","hidden");
   }
   else {//do nothing
   }

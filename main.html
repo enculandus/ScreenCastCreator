@@ -10,8 +10,10 @@
   <body>
     <div id="sidepanelin" onclick="toggle_sidepanel()"><img src="Double Chevron Right.svg" width="100%" height="100%"></div>
     <div id="toolbox">
-      <div id="logoholder" onclick="toggle_sidepanel()"><!--<a href="https://contentcreator.netlify.app/">--><img id="logo" src="logo.jpg"><!--</a>--></div>
-      <div id="sidepanelout" onclick="toggle_sidepanel()"><img id="reverseimg" align="middle" src="Double Chevron Right.svg"></div>
+      <div id="toolboxclose">
+        <div id="logoholder" onclick="toggle_sidepanel()"><!--<a href="https://contentcreator.netlify.app/">--><img id="logo" src="logo.jpg"><!--</a>--></div>
+        <div id="sidepanelout" onclick="toggle_sidepanel()"><img id="reverseimg" align="middle" src="Double Chevron Right.svg"></div>
+      </div>
       <a href="https://forms.gle/Yvnn4JJyaKFxoQeK6"><marquee>Submit Your Feedback Please! (Click Me)</marquee></a>
         <div id="toolscontainer">
           <h5>Tools</h5>
@@ -25,12 +27,11 @@
 			     <button class="tools" id="lines" onclick="start_line_drawing()" style="width:100%">Draw Lines</button>
 			     <button class="tools" id="circle" onClick="start_circle_drawing()" style="width: 100%">Draw Circles</button>
   			   <button class="tools" id="rectangle" onClick="start_rect_drawing()" style="width: 100%">Draw Rectangles</button>
-				<button class="tools" id="select" onClick="start_select_function()" style="width: 100%">Select</button>
-				
+				   <button class="tools" id="select" onClick="start_select_function()" style="width: 100%">Select</button>
 		    </div>
         <div id="toolproperties">
           <h5>Tool Properties</h5>
-          <div id="properties" style="width:85%">Stroke:<input id="strokewidth"  value="5" type="number" placeholder="Example: 1"></input></div>
+          <div id="properties" style="width:85%">Stroke:<input id="strokewidth"  value="5" type="range" min="1" max="100" placeholder="Example: 1"></input></div>
           <div id="properties" style="width:45%">Pen:<input id="strokecolor" value="#ffffff" type="color"></div>
           <div id="properties" style="width:45%">Board:<input id="boardcolor" value="#1F6953" type="color"></div>
         </div>
@@ -91,18 +92,8 @@
         <img id="preview" width="300" height="200">
         <button class="action" style="width:100%" onclick="imgavailable()">Add Image to Board</button>
       </div>
-      <div id="image_placement_box">
-        <button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button>
-        <button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>
-      </div>
-		<div id="copy_cut_box">
-		<h4>Which Operation do you want to perform</h4>
-        <button class="action" id="copy" onclick="ifcopy()"> Copy </button>
-        <button class="action" id="cut" onclick="ifcut()"> Cut </button>
-      </div>
-		<div id="selection_placement_box">
-        <button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button>
-        <button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>
+      <div class="notifier" id="notifier1">
+        <h3>hi</h3>
       </div>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
