@@ -25,6 +25,8 @@
 			     <button class="tools" id="lines" onclick="start_line_drawing()" style="width:100%">Draw Lines</button>
 			     <button class="tools" id="circle" onClick="start_circle_drawing()" style="width: 100%">Draw Circles</button>
   			   <button class="tools" id="rectangle" onClick="start_rect_drawing()" style="width: 100%">Draw Rectangles</button>
+				<button class="tools" id="select" onClick="start_select_function()" style="width: 100%">Select</button>
+				
 		    </div>
         <div id="toolproperties">
           <h5>Tool Properties</h5>
@@ -86,12 +88,21 @@
         <label style="width:48%;float:left">Width:<input type="number" class="input_image_dimensions" id="input_image_width" name="input_image_width" value="300"></label>
         <label style="width:48%;float:left">Height:<input type="number" class="input_image_dimensions" id="input_image_height" name="input_image_height" value="200"></label>
 		  <h5>Preview:</h5>
-        <img id="preview">
+        <img id="preview" width="300" height="200">
         <button class="action" style="width:100%" onclick="imgavailable()">Add Image to Board</button>
       </div>
       <div id="image_placement_box">
         <button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button>
         <button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>
+      </div>
+		<div id="copy_cut_box">
+		<h4>Which Operation do you want to perform</h4>
+        <button class="action" id="copy" onclick="ifcopy()"> Copy </button>
+        <button class="action" id="cut" onclick="ifcut()"> Cut </button>
+      </div>
+		<div id="selection_placement_box">
+        <button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button>
+        <button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>
       </div>
     </div>
     <!--<script src="https://www.webrtc-experiment.com/screenshot.js"></script>-->
