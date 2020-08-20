@@ -243,10 +243,6 @@ async function saveimgdata(){
 				alert("First select Image to upload!");
 			}
       notifier_control('',"0%","0%","hidden");
-			document.getElementById('image_placement_box').style.margin = "0px 0px 0px 0px";
-			document.getElementById('image_placement_box').style.height = "0%";
-			document.getElementById('image_placement_box').style.width = "0%";
-			document.getElementById('image_placement_box').style.visibility = "hidden";
 }
 
 async function copy(){
