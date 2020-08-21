@@ -208,6 +208,8 @@ async function hideCanvas() {
 }
 
 async function start_move(event) {
+	clearpag();
+	clearpage();
   event.preventDefault();
   locator(event);
   movement = true;
