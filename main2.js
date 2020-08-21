@@ -85,7 +85,7 @@ async function to_pdf() {
 
 		var canvas2 = document.getElementById("canvas2");
 		var context = canvas2.getContext("2d");
-		var image = document.getElementById("preview");
+		var imag = document.getElementById("preview");
 		var filechooser  = document.getElementById("furl");
 
 
@@ -150,7 +150,7 @@ async function resize_input_image() {
 async function setImage(x, y){
 
 	//		var image = document.getElementById("preview");
-			if(!image.complete){
+			if(!imag.complete){
 				setTimeout(function(){
 					setImage(x, y);
 				},50);
@@ -161,7 +161,7 @@ async function setImage(x, y){
 				context.fillStyle = "white";
 				context.fillText("Tip:Drag The image to its desired location", 10 , canvas2.height-100);
 			}
-			context.drawImage(image, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
+			context.drawImage(imag, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
 		}
 
 async function initi3() {
@@ -193,7 +193,7 @@ async function showCanvas() {
 			canvas2.width = window.innerWidth-20;
 			canvas2.height = window.innerHeight-20;
 			//canvas2.style.boxShadow = canv.style.boxShadow;
-
+	clearpage();
         }
 
 async function hideCanvas() {
@@ -208,7 +208,6 @@ async function hideCanvas() {
 }
 
 async function start_move(event) {
-	clearpag();
 	clearpage();
   event.preventDefault();
   locator(event);
@@ -314,7 +313,7 @@ async function start_rect_select(event) {
 async function draw_rect_select(event) {
   if (!strok){return;}
   cntx3.clearRect(0,0,canv3.width,canv3.height);
-	cntx3.setLineDash([5, 15]);
+  cntx3.setLineDash([5, 15]);
   cntx3.beginPath();
   cntx3.moveTo(controlPoint.x,controlPoint.y);
   locator(event);
@@ -332,7 +331,7 @@ async function draw_rect_select(event) {
 var wth, hht, imgData;
 async function stop_rect_select() {
   strok = false;  //turn off drawing, and immediately draw the current line to canvas1
-  stroke_properties(cntx);
+ // stroke_properties(cntx);
 //  cntx.beginPath();
 //	cntx.moveTo(controlPoint.x,controlPoint.y);
 //	cntx.lineTo(loc.x, controlPoint.y);
@@ -343,10 +342,10 @@ async function stop_rect_select() {
 //  cntx.stroke();
 //  cntx.closePath();
 //  cntx3.clearRect(0,0,canv3.width,canv3.height);
-	 imgData = cntx.getImageData(controlPoint.x, controlPoint.y, loc.x-controlPoint.x,loc.y-controlPoint.y);
-//	cntx.fillRect(controlPoint.x,controlPoint.y,loc.x-controlPoint.x,loc.y-controlPoint.y)
 	wth = loc.x-controlPoint.x;
 	hht = loc.y-controlPoint.y;
+	imgDataa = cntx.getImageData(controlPoint.x, controlPoint.y, wth, hht);
+//	cntx.fillRect(controlPoint.x,controlPoint.y,loc.x-controlPoint.x,loc.y-controlPoint.y)
 	showcutcopybox();
 }
 
@@ -393,7 +392,7 @@ async function setSelImage(x, y){
 				context.fillStyle = "white";
 				context.fillText("Tip:Drag The selected area to its desired location", 86, canv.height-25);
 			}
-			context.putImageData(imgData, x, y);
+			context.putImageData(imgDataa, x, y);
 		}
 /*
 async function start_move(event) {
@@ -414,19 +413,19 @@ async function mov(event){
   locator(event);
   var x = loc.x;
   var y = loc.y;
-  clearpag();
+  clearpage();
   setSelImage(x, y);
 }
-
+/*
 async function clearpag() {
   context.clearRect(0,0,canvas2.width,canvas2.height);
 }
-
+*/
 async function saveselectdata(){
 
-	var imgdata = context.getImageData(loc.x, loc.y, wth, hht);
-	cntx.putImageData(imgdata, loc.x, loc.y);
-	clearpag();
+	var imgdaa = context.getImageData(loc.x, loc.y, wth, hht);
+	cntx.putImageData(imgdaa, loc.x, loc.y);
+	clearpage();
 	hideCanvass();
 	update_page_image();
   notifier_control('',"0%","0%","hidden");
