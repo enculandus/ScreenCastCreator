@@ -188,9 +188,11 @@ input{
 
 #canvas1{
   border-radius: 10px;
-  margin:10px;
+  margin-top:10px;
+  margin-left: 10px;
   float: right;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
 }
 
 #canvas2{
@@ -201,8 +203,8 @@ input{
   z-index: 1;
   opacity:  1;
   position: absolute;
-  top: 10px;
-  bottom: 10px;
+  //top: 10px;
+  //bottom: 10px;
 }
 
 #image_input_menu{
@@ -276,23 +278,23 @@ input{
   //width: 48%;
 }
 
-notifier{
+/*notifier{
   border-radius: 10px;
   margin-left: 25%;
-}
+}*/
 
 #notifier1{
   border-radius: 10px;
-  margin-left: 25%;
-  margin-top: 80%;
+  //margin-left: 25%;
+  //margin-top: 80%;
   width: 50%;
-  height: 20%;
+  //height: 20%;
   z-index: 5;
   background-color: white;
   position: absolute;
-  padding: 2px 1px 2px 1px;
+  //padding: 2px 1px 2px 1px;
   text-align: center;
-  align-items: center;
+  //align-items: center;
 }
 
 #toolboxclose{

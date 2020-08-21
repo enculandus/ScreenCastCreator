@@ -131,7 +131,7 @@ async function resize_input_image() {
 			document.getElementById('image_input_menu').style.width = "0%";
 			document.getElementById('image_input_menu').style.visibility = "hidden";
 
-      notifier_control('<button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button><button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>',"25%","80%","visible");
+      notifier_control('<button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button><button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>',"25%","70%","visible");
 
       //document.getElementById('image_placement_box').style.visibility = "visible";
 			//document.getElementById('image_placement_box').style.height = "50px";
@@ -192,7 +192,7 @@ async function showCanvas() {
 
 			canvas2.width = window.innerWidth-20;
 			canvas2.height = window.innerHeight-20;
-			canvas2.style.boxShadow = canv.style.boxShadow;
+			//canvas2.style.boxShadow = canv.style.boxShadow;
 
         }
 
@@ -268,8 +268,8 @@ async function start_select_function() {
   canv3.addEventListener("pointerdown", start_rect_select);
   canv3.addEventListener("pointermove", draw_rect_select);
   canv3.addEventListener("pointerup", stop_rect_select);
-  canv3.width = window.innerWidth-20;
-  canv3.height = window.innerHeight-20;
+  canv3.width = window.innerWidth - 20;
+  canv3.height = window.innerHeight - 20;
   canv3.style.opacity=1;
   canv3.style.visibility='visible';
   document.getElementById('select').style.backgroundColor = "#9392FF";
@@ -298,6 +298,7 @@ async function stop_select_function() {
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
   isSelectOn=false;
+  notifier_control('',"0%","0%","hidden");
 }
 
 async function start_rect_select(event) {
@@ -312,10 +313,11 @@ async function start_rect_select(event) {
 async function draw_rect_select(event) {
   if (!strok){return;}
   cntx3.clearRect(0,0,canv3.width,canv3.height);
-	cntx3.setLineDash([5, 15])
+	cntx3.setLineDash([5, 15]);
   cntx3.beginPath();
   cntx3.moveTo(controlPoint.x,controlPoint.y);
   locator(event);
+  //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
   //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
 	cntx3.lineTo(loc.x, controlPoint.y);
 	cntx3.lineTo(loc.x, loc.y);
@@ -326,7 +328,7 @@ async function draw_rect_select(event) {
   cntx3.closePath();
 }
 
-
+var wth, hht, imgData;
 async function stop_rect_select() {
   strok = false;  //turn off drawing, and immediately draw the current line to canvas1
   stroke_properties(cntx);
@@ -340,13 +342,14 @@ async function stop_rect_select() {
 //  cntx.stroke();
 //  cntx.closePath();
 //  cntx3.clearRect(0,0,canv3.width,canv3.height);
-	imgData = cntx.getImageData(controlPoint.x, controlPoint.y, loc.x-controlPoint.x, loc.y-controlPoint.y);
+	 imgData = cntx.getImageData(controlPoint.x, controlPoint.y, Math.abs(loc.x-controlPoint.x),Math.abs(loc.y-controlPoint.y));
 //	cntx.fillRect(controlPoint.x,controlPoint.y,loc.x-controlPoint.x,loc.y-controlPoint.y)
 	wth = loc.x-controlPoint.x;
 	hht = loc.y-controlPoint.y;
 	showcutcopybox();
+  notifier_control('',"0%","0%","hidden");
 }
-var wth, hht, imgData;
+
 
 async function showcutcopybox(){
 	notifier_control('<button class="action" id="copy" onclick="ifcopy()"> Copy </button><button class="action" id="cut" onclick="ifcut()"> Cut </button>',"25%","80%","visible");
