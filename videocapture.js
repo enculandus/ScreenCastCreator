@@ -72,6 +72,7 @@ async function stop_recording() {
 
   streamholder=[];
 
+  notifier_control('',"0%","0%","hidden");
   document.body.style.backgroundColor='white';
   document.getElementById('action10').disabled="true";
   document.getElementById('action2').style.backgroundColor='white';

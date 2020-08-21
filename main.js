@@ -191,7 +191,6 @@ function start_eraser() {
   document.getElementById('strokecolor').value = document.getElementById("boardcolor").value;
   //changing button properties
   document.getElementById('eraser').style.backgroundColor = "#9392FF";
-  isEraserOn=true;
 }
 
 function stop_eraser() {
@@ -403,6 +402,7 @@ async function stop_line() {
 //Trying circle drawing
 async function start_circle_drawing() {
   tool_toggler();
+  toggle_sidepanel();
   canv3.addEventListener("touchstart", start_circle);
   canv3.addEventListener("touchmove", draw_circle);
   canv3.addEventListener("touchend", stop_circle);
@@ -493,6 +493,7 @@ async function stop_circle() {
 //Trying line drawing
 async function start_rect_drawing() {
   tool_toggler();
+  toggle_sidepanel();
   canv3.addEventListener("touchstart", start_rect);
   canv3.addEventListener("touchmove", draw_rect);
   canv3.addEventListener("touchend", stop_rect);
@@ -578,7 +579,7 @@ async function stop_rect() {
 
 //notification functions
 async function notifier_control(message, notifier_margin_left, notifier_margin_top, notifier_visibility) {
-  document.getElementById('notifier1').style.margin = notifier_margin_top + "0px 0px" + notifier_margin_left;
+  document.getElementById('notifier1').style.margin = "0px 0px 0px" + notifier_margin_left;
   //document.getElementById('image_placement_box').style.height = "0%";
   //document.getElementById('image_placement_box').style.width = "0%";
   document.getElementById('notifier1').style.visibility = notifier_visibility;

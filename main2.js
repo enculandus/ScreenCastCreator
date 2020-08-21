@@ -298,7 +298,6 @@ async function stop_select_function() {
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
   isSelectOn=false;
-  notifier_control('',"0%","0%","hidden");
 }
 
 async function start_rect_select(event) {
@@ -342,12 +341,11 @@ async function stop_rect_select() {
 //  cntx.stroke();
 //  cntx.closePath();
 //  cntx3.clearRect(0,0,canv3.width,canv3.height);
-	 imgData = cntx.getImageData(controlPoint.x, controlPoint.y, Math.abs(loc.x-controlPoint.x),Math.abs(loc.y-controlPoint.y));
+	 imgData = cntx.getImageData(controlPoint.x, controlPoint.y, loc.x-controlPoint.x,loc.y-controlPoint.y);
 //	cntx.fillRect(controlPoint.x,controlPoint.y,loc.x-controlPoint.x,loc.y-controlPoint.y)
 	wth = loc.x-controlPoint.x;
 	hht = loc.y-controlPoint.y;
 	showcutcopybox();
-  notifier_control('',"0%","0%","hidden");
 }
 
 
@@ -356,19 +354,16 @@ async function showcutcopybox(){
 }
 
 async function showselectionbox(){
-  notifier_control('',"0%","0%","hidden");
-  notifier_control('<button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>',"25%","80%","visible");
+  notifier_control('<button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
 	stop_select_function();
 	initi4();
 }
 
 async function ifcopy(){
-  notifier_control('',"0%","0%","hidden");
 	showselectionbox();
 }
 
 async function ifcut(){
-  notifier_control('',"0%","0%","hidden");
   cntx.fillStyle = document.getElementById("boardcolor").value;
 	cntx.fillRect(controlPoint.x,controlPoint.y,wth,hht);
 	showselectionbox();
@@ -414,7 +409,6 @@ async function mov(event){
   if (!movement){return;}
   context.beginPath();
   context.moveTo(loc.x,loc.y);
-
   locator(event);
   var x = loc.x;
   var y = loc.y;
@@ -440,6 +434,7 @@ async function hideCanvass() {
 	canvas2.style.visibility = 'hidden';
 	canvas2.width = '0';
 	canvas2.height = '0';
+  notifier_control('',"0%","0%","hidden");
 }
 
 //notification opening and closing
