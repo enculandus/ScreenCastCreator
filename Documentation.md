@@ -1,25 +1,27 @@
 **Libraries Used**
 
-*RecordRTC
+  *RecordRTC
 
-*JsPDF
+  *JsPDF
 
-*Google fonts script
+  *Google fonts script
 
 **Features**
 
--Record Drawing Video
+  -Record Drawing Video
 
--Capture Image as PDF
+  -Capture Image as PDF
 
--Drawing specific shapes
+  -Drawing specific shapes
 
--Undo
+  -Undo
+  
+  -selection and opertions on selected area
 
--Redo
+  -Redo
 
--Inserting images
+  -Inserting images
 
--multiple canvases
+  -multiple canvases
 
--multiple color support for pen and background
+  -multiple color support for pen and background
