@@ -578,7 +578,7 @@ async function stop_rect() {
 
 //notification functions
 async function notifier_control(message, notifier_margin_left, notifier_margin_top, notifier_visibility) {
-  document.getElementById('notifier1').style.margin = notifier_margin_top + "0% 0%" + notifier_margin_left;
+  document.getElementById('notifier1').style.margin = notifier_margin_top + "0px 0px" + notifier_margin_left;
   //document.getElementById('image_placement_box').style.height = "0%";
   //document.getElementById('image_placement_box').style.width = "0%";
   document.getElementById('notifier1').style.visibility = notifier_visibility;

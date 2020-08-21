@@ -352,7 +352,7 @@ async function stop_rect_select() {
 
 
 async function showcutcopybox(){
-	notifier_control('<button class="action" id="copy" onclick="ifcopy()"> Copy </button><button class="action" id="cut" onclick="ifcut()"> Cut </button>',"25%","80%","visible");
+	notifier_control('<button class="action" id="copy" onclick="ifcopy()"> Copy </button><button class="action" id="cut" onclick="ifcut()"> Cut </button>',"0px","0px","visible");
 }
 
 async function showselectionbox(){
