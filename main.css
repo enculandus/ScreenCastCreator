@@ -63,7 +63,6 @@ h6{
   float: left;
   visibility: hidden;
   margin-left: 10px;
-  //margin-bottom: 20%;
   z-index: 20;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -134,7 +133,6 @@ input{
   min-height: 25px;
   margin: 1px 1px 1px 1px;
   float: left;
-  //padding: 2px 2px 2px 2px;
   text-align: center;
   align-items: center;
   display: block;
@@ -203,8 +201,6 @@ input{
   z-index: 1;
   opacity:  1;
   position: absolute;
-  //top: 10px;
-  //bottom: 10px;
 }
 
 #image_input_menu{
@@ -266,7 +262,6 @@ input{
 #canvas3{
   border-radius: 10px;
   margin-left: 10px;
-  background-color: ;
   visibility: hidden;
   opacity: 0;
   top: 10px;
@@ -275,7 +270,7 @@ input{
 }
 
 .input_image_dimensions{
-  //width: 48%;
+  
 }
 
 /*notifier{
@@ -295,18 +290,12 @@ input{
 }
 
 #toolboxclose{
-  //display: block;
-  //position: fixed;
-  //background-color: white;
-  //width: 100%;
-  //margin: 0 0 0 0;
+  
 }
 
 body{
   margin: 0;
   padding: 0;
-  //width:100%;
-  //height:100%;
   overflow-y: hidden;
   overflow-x: hidden;
 }
