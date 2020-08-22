@@ -72,6 +72,7 @@ async function stop_recording() {
 
   streamholder=[];
 
+  notifier_control('',"0%","0%","hidden");
   document.body.style.backgroundColor='white';
   document.getElementById('action10').disabled="true";
   document.getElementById('action2').style.backgroundColor='white';
@@ -98,6 +99,7 @@ async function toggle_recording() {
   }
   else if (recorder.getState()=="paused") {
     recorder.resumeRecording();
+    document.body.style.backgroundColor='red';
     notifier_control('',"0%","0%","hidden");
   }
   else {//do nothing
@@ -110,6 +112,7 @@ async function toggle_recording() {
   }*/
 }
 
+//Not yet working !!
 var cam_stream;
 async function show_camera() {
   try{
@@ -120,6 +123,10 @@ async function show_camera() {
   window.setInterval(function() {cntx.drawImage(cam_stream,controlPoint.x,controlPoint.y,260,125)},50);
 }
 
+//not yet working!!
 async function share_screen() {
-
+  toggle_recording();
+  screenstream = await navigator.mediaDevices.getDisplayMedia();
+  streamholder.push(screenstream);
+  toggle_recording();
 }

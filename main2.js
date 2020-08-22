@@ -85,7 +85,7 @@ async function to_pdf() {
 
 		var canvas2 = document.getElementById("canvas2");
 		var context = canvas2.getContext("2d");
-		var image = document.getElementById("preview");
+		var imag = document.getElementById("preview");
 		var filechooser  = document.getElementById("furl");
 
 
@@ -124,44 +124,33 @@ async function resize_input_image() {
 	document.getElementById("preview").style.width = document.getElementById("input_image_width").value + "px";
 }
 
-	async	function imgavailable(){
-
-			document.getElementById('image_input_menu').style.margin = "0px 0px 0px 0px";
-			document.getElementById('image_input_menu').style.height = "0%";
-			document.getElementById('image_input_menu').style.width = "0%";
-			document.getElementById('image_input_menu').style.visibility = "hidden";
-
-      notifier_control('<button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button><button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>',"25%","70%","visible");
-
-      //document.getElementById('image_placement_box').style.visibility = "visible";
-			//document.getElementById('image_placement_box').style.height = "50px";
-			//document.getElementById('image_placement_box').style.width = "90px";
-			//document.getElementById('image_placement_box').style.margin = "20% 0% 0% 0%";
-
-			if(filechooser.value != ""){
-				initi3();
-			}
-			else{
-				alert("First select Image to upload!");
-			}
-
+async	function imgavailable(){
+	document.getElementById('image_input_menu').style.margin = "0px 0px 0px 0px";
+	document.getElementById('image_input_menu').style.height = "0%";
+	document.getElementById('image_input_menu').style.width = "0%";
+	document.getElementById('image_input_menu').style.visibility = "hidden";
+	notifier_control('<button class="action" id="image_input_denial" onclick="hideCanvas()"><img id="icon" src="Cross.svg"></button><button class="action" id="image_input_confirm" onclick="saveimgdata()"><img id="icon" src="Check.svg"></button>',"25%","70%","visible");
+	if(filechooser.value != ""){
+		initi3();
+	}
+	else{
+		alert("First select Image to upload!");
 		}
+	}
 
 async function setImage(x, y){
-
-	//		var image = document.getElementById("preview");
-			if(!image.complete){
-				setTimeout(function(){
-					setImage(x, y);
+	if(!imag.complete){
+		setTimeout(function(){
+			setImage(x, y);
 				},50);
-				return;
-			}
-			if(canv.width>canv.height){
-				context.font = "30px Arial";
-				context.fillStyle = "white";
-				context.fillText("Tip:Drag The image to its desired location", 10 , canvas2.height-100);
-			}
-			context.drawImage(image, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
+		return;
+		}
+	if(canv.width>canv.height){
+		context.font = "30px Arial";
+		context.fillStyle = "white";
+		context.fillText("Tip:Drag The image to its desired location", 10 , canvas2.height-100);
+		}
+		context.drawImage(imag, (x - (document.getElementById("input_image_width").value/2)), (y - (document.getElementById("input_image_height").value/2)), document.getElementById("input_image_width").value, document.getElementById("input_image_height").value);
 		}
 
 async function initi3() {
@@ -178,23 +167,17 @@ async function initi3() {
 	canvas2.addEventListener("pointerup", stop_move);
 	canvas2.addEventListener("pointermove", move);
 }
-//var loca ={x:0 , y:0};
 var movement = false;
 
 async function showCanvas() {
-				if(audiostream){
-					recorder.pauseRecording();
-				}
-            canvas2.style.visibility = 'visible';
-	//		canv.style.visibility = 'hidden';
-	//		canvas2.style.width = canv.style.width;
-	//		canvas2.style.height = canv.style.height;
-
-			canvas2.width = window.innerWidth-20;
-			canvas2.height = window.innerHeight-20;
-			//canvas2.style.boxShadow = canv.style.boxShadow;
-
-        }
+	if(audiostream){
+		recorder.pauseRecording();
+		}
+	canvas2.style.visibility = 'visible';
+	canvas2.width = window.innerWidth-20;
+	canvas2.height = window.innerHeight-20;
+	clearpage();
+    }
 
 async function hideCanvas() {
 	clearpage();
@@ -204,10 +187,11 @@ async function hideCanvas() {
 	if(audiostream){
 		recorder.resumeRecording();
 	}
-  notifier_control('',"0%","0%","hidden");
+	notifier_control('',"0%","0%","hidden");
 }
 
 async function start_move(event) {
+	clearpage();
   event.preventDefault();
   locator(event);
   movement = true;
@@ -218,31 +202,28 @@ async function stop_move(event) {
 }
 
 async function move(event){
-  if (!movement){return;}
-  context.beginPath();
-  context.moveTo(loc.x,loc.y);
-
-  locator(event);
-  var x = loc.x;
-  var y = loc.y;
-  clearpage();
-  setImage(x, y);
+	if (!movement){return;}
+	context.beginPath();
+	context.moveTo(loc.x,loc.y);
+	locator(event);
+	var x = loc.x;
+	var y = loc.y;
+	clearpage();
+	setImage(x, y);
 }
 
 async function clearpage() {
   context.clearRect(0,0,canvas2.width,canvas2.height);
-  //context.fillStyle = document.getElementById("boardcolor").value;
-  //context.fillRect(0, 0, canvas2.width, canvas2.height);
 }
 
 async function saveimgdata(){
 	if(filechooser.value != ""){
-				copy();
-			}
-			else{
-				alert("First select Image to upload!");
-			}
-      notifier_control('',"0%","0%","hidden");
+		copy();
+	}
+	else{
+		alert("First select Image to upload!");
+		}
+	notifier_control('',"0%","0%","hidden");
 }
 
 async function copy(){
@@ -251,10 +232,7 @@ async function copy(){
 	clearpage();
 	hideCanvas();
 	filechooser.value = "";
-
 }
-
-
 
 //Trying select function
 async function start_select_function() {
@@ -298,7 +276,6 @@ async function stop_select_function() {
   pstrokewidth = document.getElementById('strokewidth').value;
   pstrokecolor = document.getElementById('strokecolor').value;
   isSelectOn=false;
-  notifier_control('',"0%","0%","hidden");
 }
 
 async function start_rect_select(event) {
@@ -313,12 +290,10 @@ async function start_rect_select(event) {
 async function draw_rect_select(event) {
   if (!strok){return;}
   cntx3.clearRect(0,0,canv3.width,canv3.height);
-	cntx3.setLineDash([5, 15]);
+  cntx3.setLineDash([5, 15]);
   cntx3.beginPath();
   cntx3.moveTo(controlPoint.x,controlPoint.y);
   locator(event);
-  //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
-  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
 	cntx3.lineTo(loc.x, controlPoint.y);
 	cntx3.lineTo(loc.x, loc.y);
 	cntx3.lineTo(controlPoint.x, loc.y);
@@ -331,23 +306,10 @@ async function draw_rect_select(event) {
 var wth, hht, imgData;
 async function stop_rect_select() {
   strok = false;  //turn off drawing, and immediately draw the current line to canvas1
-  stroke_properties(cntx);
-//  cntx.beginPath();
-//	cntx.moveTo(controlPoint.x,controlPoint.y);
-//	cntx.lineTo(loc.x, controlPoint.y);
-//	cntx.lineTo(loc.x, loc.y);
-//	cntx.lineTo(controlPoint.x, loc.y);
-//	cntx.lineTo(controlPoint.x,controlPoint.y);
-//	cntx.moveTo(loc.x,loc.y);
-//  cntx.stroke();
-//  cntx.closePath();
-//  cntx3.clearRect(0,0,canv3.width,canv3.height);
-	 imgData = cntx.getImageData(controlPoint.x, controlPoint.y, Math.abs(loc.x-controlPoint.x),Math.abs(loc.y-controlPoint.y));
-//	cntx.fillRect(controlPoint.x,controlPoint.y,loc.x-controlPoint.x,loc.y-controlPoint.y)
 	wth = loc.x-controlPoint.x;
 	hht = loc.y-controlPoint.y;
+	imgDataa = cntx.getImageData(controlPoint.x, controlPoint.y, wth, hht);
 	showcutcopybox();
-  notifier_control('',"0%","0%","hidden");
 }
 
 
@@ -356,19 +318,16 @@ async function showcutcopybox(){
 }
 
 async function showselectionbox(){
-  notifier_control('',"0%","0%","hidden");
-  notifier_control('<button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>',"25%","80%","visible");
+  notifier_control('<button class="action" id="select_input_denial" onclick="hideCanvass()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="saveselectdata()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
 	stop_select_function();
 	initi4();
 }
 
 async function ifcopy(){
-  notifier_control('',"0%","0%","hidden");
 	showselectionbox();
 }
 
 async function ifcut(){
-  notifier_control('',"0%","0%","hidden");
   cntx.fillStyle = document.getElementById("boardcolor").value;
 	cntx.fillRect(controlPoint.x,controlPoint.y,wth,hht);
 	showselectionbox();
@@ -389,48 +348,29 @@ async function initi4(){
 }
 
 async function setSelImage(x, y){
-
-	//		var image = document.getElementById("preview");
-			if(canv.width>canv.height){
-				context.font = "30px Arial";
-				context.fillStyle = "white";
-				context.fillText("Tip:Drag The selected area to its desired location", 86, canv.height-25);
-			}
-			context.putImageData(imgData, x, y);
-		}
-/*
-async function start_move(event) {
-  event.preventDefault();
-  locator(event);
-  movement = true;
+	if(canv.width>canv.height){
+		context.font = "30px Arial";
+		context.fillStyle = "white";
+		context.fillText("Tip:Drag The selected area to its desired location", 86, canv.height-25);
+	}
+	context.putImageData(imgDataa, x, y);
 }
-
-async function stop_move(event) {
-  movement = false;
-}
-*/
 
 async function mov(event){
   if (!movement){return;}
   context.beginPath();
   context.moveTo(loc.x,loc.y);
-
   locator(event);
   var x = loc.x;
   var y = loc.y;
-  clearpag();
+  clearpage();
   setSelImage(x, y);
 }
 
-async function clearpag() {
-  context.clearRect(0,0,canvas2.width,canvas2.height);
-}
-
 async function saveselectdata(){
-
-	var imgdata = context.getImageData(loc.x, loc.y, wth, hht);
-	cntx.putImageData(imgdata, loc.x, loc.y);
-	clearpag();
+	var imgdaa = context.getImageData(loc.x, loc.y, wth, hht);
+	cntx.putImageData(imgdaa, loc.x, loc.y);
+	clearpage();
 	hideCanvass();
 	update_page_image();
   notifier_control('',"0%","0%","hidden");
@@ -440,6 +380,7 @@ async function hideCanvass() {
 	canvas2.style.visibility = 'hidden';
 	canvas2.width = '0';
 	canvas2.height = '0';
+  notifier_control('',"0%","0%","hidden");
 }
 
 //notification opening and closing
