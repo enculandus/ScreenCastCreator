@@ -29,14 +29,11 @@ h6{
 #sidepanelout{
   width: 35%;
   float: right;
-  /*height: 11%;
-  /*align: center;*/
   padding-top: 1%;
 }
 
 #logoholder{
   float: left;
-  /*align-self: flex-start;*/
   margin: 2px 8px;
   background-color: white;
 }
@@ -63,7 +60,6 @@ h6{
   float: left;
   visibility: hidden;
   margin-left: 10px;
-  //margin-bottom: 20%;
   z-index: 20;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -134,7 +130,7 @@ input{
   min-height: 25px;
   margin: 1px 1px 1px 1px;
   float: left;
-  //padding: 2px 2px 2px 2px;
+  padding: 2px 2px 2px 2px;
   text-align: center;
   align-items: center;
   display: block;
@@ -196,7 +192,6 @@ input{
 }
 
 #canvas2{
-  /*border: 2px solid black;*/
   border-radius: 10px;
   margin-top: 10px;
   margin-left: 10px;
@@ -275,13 +270,7 @@ input{
 }
 
 .input_image_dimensions{
-  //width: 48%;
 }
-
-/*notifier{
-  border-radius: 10px;
-  margin-left: 25%;
-}*/
 
 #notifier1{
   border-radius: 10px;
@@ -289,24 +278,17 @@ input{
   background-color: white;
   position: absolute;
   text-align: center;
-  //align-self: baseline;
   bottom: 10px;
   left: 47%;
 }
 
 #toolboxclose{
-  //display: block;
-  //position: fixed;
-  //background-color: white;
-  //width: 100%;
-  //margin: 0 0 0 0;
 }
 
 /* Tooltip container */
 .action {
   position: relative;
   display: inline-block;
-  /*  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
