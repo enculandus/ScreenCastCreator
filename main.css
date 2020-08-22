@@ -130,7 +130,6 @@ input{
   min-height: 25px;
   margin: 1px 1px 1px 1px;
   float: left;
-  padding: 2px 2px 2px 2px;
   text-align: center;
   align-items: center;
   display: block;
@@ -198,8 +197,6 @@ input{
   z-index: 1;
   opacity:  1;
   position: absolute;
-  //top: 10px;
-  //bottom: 10px;
 }
 
 #image_input_menu{
@@ -261,7 +258,6 @@ input{
 #canvas3{
   border-radius: 10px;
   margin-left: 10px;
-  background-color: ;
   visibility: hidden;
   opacity: 0;
   top: 10px;
