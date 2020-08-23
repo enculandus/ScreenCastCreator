@@ -30,7 +30,7 @@ async function start_recording() {
   streamholder.push(videostream);
   streamholder.push(audiostream);
   recorder = new RecordRTC(streamholder, {
-      type: 'canvas',
+      type: 'video',
       mimeType:'video/webm',
       video:{width:canv.width, height:canv.height},
       frameInterval: 60,
@@ -113,7 +113,7 @@ async function toggle_recording() {
 }
 
 //Not yet working !!
-var cam_stream;
+var cam_stream, screenstream;
 async function show_camera() {
   try{
     cam_stream = await navigator.mediaDevices.getUserMedia({video:true});
@@ -126,7 +126,10 @@ async function show_camera() {
 //not yet working!!
 async function share_screen() {
   toggle_recording();
+  let mixer = recorder.getInternalRecorder().getMixer();
   screenstream = await navigator.mediaDevices.getDisplayMedia();
+  mixer.appendStreams([screenstream]);
   streamholder.push(screenstream);
+  streamholder.shift();
   toggle_recording();
 }
