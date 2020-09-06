@@ -299,7 +299,7 @@ async function button_state_checker() {
 //Undo Redo Achieved
 
 //tool toggler
-var isPencilOn=true, isEraserOn=false, isLineOn=false, isCircleOn=false, isRectOn=false, isSelectOn=false;
+var isPencilOn=true, isEraserOn=false, isLineOn=false, isCircleOn=false, isRectOn=false, isSelectOn=false, isTextOn=false;
 async function tool_toggler() {
   if(isPencilOn){
     stop_pencil();
@@ -318,6 +318,9 @@ async function tool_toggler() {
 	}
 	if(isSelectOn){
 		stop_select_function();
+	}
+	if(isTextOn){
+		stop_text_movement();
 	}
 }
 
