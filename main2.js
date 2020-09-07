@@ -409,10 +409,15 @@ async function start_text_movement() {
   //toggle_sidepanel();
 	txxt = document.getElementById('txt');
 	notifier_control('',"0%","0%","hidden");
-	notifier_control('<button class="action" id="select_input_denial" onclick="textcancel()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="textsave()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
+	notifier_control('<h5>Font Size:</h5><br><input id="fontsize"  value="30" type="range" min="1" max="120" placeholder="Example: 1"> <br> <button class="action" id="select_input_denial" onclick="textcancel()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="textsave()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
+	txxtsize = document.getElementById("fontsize").value;
+	txtsize = txxtsize+"px Verdana";
+	cntx3.fillStyle = document.getElementById('strokecolor').value;
+	cntx3.font = txtsize;
+	cntx3.fillText(txxt.value, canv3.width/2, canv3.height/2);
 
 }
-var txxt;
+var txxt, txxtsize, txtsize;
 async function stop_text_movement() {
 	cntx3.clearRect(0,0,canv3.width,canv3.height);
   canv3.width = 0;
@@ -440,7 +445,7 @@ async function start_movement(event) {
   locator(event);
   controlPoint.x=loc.x; //used to store the initial point
   controlPoint.y=loc.y;
-  stroke_properties(cntx3);
+//  stroke_properties(cntx3);
   strok =true;
 
 }
@@ -454,7 +459,9 @@ async function movment(event) {
   locator(event);
   //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
 	cntx3.fillStyle = document.getElementById('strokecolor').value;
-  cntx3.font = "30px Verdana";
+	txxtsize = document.getElementById("fontsize").value;
+	txtsize = txxtsize+"px Verdana";
+  cntx3.font = txtsize;
   cntx3.fillText(txxt.value, loc.x, loc.y);
 }
 
@@ -466,7 +473,9 @@ async function stop_movement() {
 async function textsave() {
 	stop_text_movement();
 	cntx.fillStyle = document.getElementById('strokecolor').value;
-	cntx.font = "30px Verdana";
+//	txxtsize = document.getElementById("fontsize").value;
+//	txtsize = txxtsize+"px Verdana";
+	cntx.font = txtsize;
 	cntx.fillText(txxt.value, loc.x, loc.y);
 	update_page_image();
 }
@@ -477,6 +486,7 @@ async function textcancel() {
 
 async function start_text_input() {
 	notifier_control('<input type="text" id="txt"><br><br><button class="action" id="select_input_denial" onclick="stop_text_input()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="start_text_movement()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
+	document.getElementById("txt").focus();
 }
 
 async function stop_text_input() {
