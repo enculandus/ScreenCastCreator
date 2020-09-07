@@ -402,9 +402,9 @@ async function start_text_movement() {
   canv3.height = window.innerHeight-20;
   canv3.style.opacity=1;
   canv3.style.visibility='visible';
-  document.getElementById('lines').style.backgroundColor = "#9392FF";
-  document.getElementById('strokecolor').value = pstrokecolor;
-  document.getElementById('strokewidth').value = pstrokewidth;
+//  document.getElementById('lines').style.backgroundColor = "#9392FF";
+//  document.getElementById('strokecolor').value = pstrokecolor;
+//  document.getElementById('strokewidth').value = pstrokewidth;
   isTextOn=true;
   //toggle_sidepanel();
 	txxt = document.getElementById('txt');
@@ -434,8 +434,8 @@ async function stop_text_movement() {
   canv3.removeEventListener("pointerdown", start_movement);
   canv3.removeEventListener("pointermove", movment);
   canv3.removeEventListener("pointerup", stop_movement);
-  pstrokewidth = document.getElementById('strokewidth').value;
-  pstrokecolor = document.getElementById('strokecolor').value;
+//  pstrokewidth = document.getElementById('strokewidth').value;
+//  pstrokecolor = document.getElementById('strokecolor').value;
   isTextOn=false;
 	notifier_control('',"0%","0%","hidden");
 }
@@ -487,8 +487,11 @@ async function textcancel() {
 async function start_text_input() {
 	notifier_control('<input type="text" id="txt"><br><br><button class="action" id="select_input_denial" onclick="stop_text_input()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="start_text_movement()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
 	document.getElementById("txt").focus();
+	tool_toggler();
+//	isTextOn = true;
 }
 
 async function stop_text_input() {
+	isTextOn=false
 	notifier_control('',"0%","0%","hidden");
 }
