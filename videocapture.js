@@ -39,6 +39,7 @@ async function start_recording() {
   //starting recorder
   recorder.startRecording();
   document.getElementById('action10').disabled=false;
+  document.getElementById('action11').disabled=false;
   //putting up logo
   cntx.font = "15px Arial";
   cntx.fillStyle="white";
