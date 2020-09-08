@@ -69,7 +69,10 @@ async function stop_recording() {
   //to stop the tracks, ensuring that the user is asked permissions each time recording is started
   track_stopper(audiostream);
   track_stopper(videostream);
-
+  //since screenstream may not always exist
+  if(screenstream){
+    track_stopper(screenstream);
+  }
   streamholder=[];
 
   notifier_control('',"0%","0%","hidden");
@@ -125,11 +128,24 @@ async function show_camera() {
 
 //not yet working!!
 async function share_screen() {
-  toggle_recording();
-  let mixer = recorder.getInternalRecorder().getMixer();
-  screenstream = await navigator.mediaDevices.getDisplayMedia();
-  mixer.appendStreams([screenstream]);
-  streamholder.push(screenstream);
-  streamholder.shift();
-  toggle_recording();
+  //if(screenstream){
+    toggle_recording();
+    if(confirm("You cannot stop screen recording and continue recording only the board once you begin. Both screen and board will be recored for the rest of the video.")){}
+    else{toggle_recording(); return;}
+    let mixer = recorder.getInternalRecorder().getMixer();
+    //mixer.releaseStreams();
+    screenstream = await navigator.mediaDevices.getDisplayMedia();
+    //audiostream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true}});
+    //track_stopper(videostream);
+    mixer.appendStreams(screenstream);
+    streamholder.push(screenstream);
+    //mixer.appendStreams(audiostream);
+    //streamholder.push(audiostream);
+    //streamholder.shift();
+    toggle_recording();
+  //}
+  //else {
+    //toggle_recording();
+
+  //}
 }
