@@ -151,23 +151,25 @@ function sleep(milliseconds) {
 
 
 async function draw(event) {
-  if (!strok){return;}
-  cntx.beginPath();
-  cntx.moveTo(loc.x,loc.y);
-  //locator(event);
-  controlPoint.x=loc.x;
-  controlPoint.y=loc.y;
-  //new piece
-  locator(event);
-  controlPoint.x = (controlPoint.x + loc.x)/2 ;
-  controlPoint.y = (controlPoint.y + loc.y)/2 ;
-  //end piece
-  //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
-  locator(event);
-  cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
-  //cntx.lineTo(loc.x,loc.y);
-  cntx.stroke();
-  cntx.closePath();
+  return (strok&&draw_inner_fun(event))
+  function draw_inner_fun(event) {
+    cntx.beginPath();
+    cntx.moveTo(loc.x,loc.y);
+    //locator(event);
+    controlPoint.x=loc.x;
+    controlPoint.y=loc.y;
+    //new piece
+    locator(event);
+    controlPoint.x = (controlPoint.x + loc.x)/2 ;
+    controlPoint.y = (controlPoint.y + loc.y)/2 ;
+    //end piece
+    //document.getElementById('toolscontainer').innerHTML = "X:" + controlPoint.x +"   Y:" + controlPoint.y ; //for testing
+    locator(event);
+    cntx.quadraticCurveTo(controlPoint.x, controlPoint.y, loc.x, loc.y);
+    //cntx.lineTo(loc.x,loc.y);
+    cntx.stroke();
+    cntx.closePath();
+  }
 }
 
 function clear_page(cntx_name) {
