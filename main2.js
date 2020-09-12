@@ -338,7 +338,7 @@ async function initi4(){
 	setSelImage(controlPoint.x, controlPoint.y);
 	canvas2.addEventListener("touchstart", start_move);
 	canvas2.addEventListener("touchend", stop_move);
-	canvas2.addEventListener("touchmove", mov(event, imgData));
+	canvas2.addEventListener("touchmove", mov(event));
  	canvas2.addEventListener("mousedown", start_move);
 	canvas2.addEventListener("mouseup", stop_move);
 	canvas2.addEventListener("mousemove", mov);
@@ -364,12 +364,12 @@ async function mov(event){
   var x = loc.x;
   var y = loc.y;
   clearpage();
-  setSelImage(x, y);
+  setSelImage(x-(wth/2), y-(hht/2));
 }
 
 async function saveselectdata(){
-	var imgdaa = context.getImageData(loc.x, loc.y, wth, hht);
-	cntx.putImageData(imgdaa, loc.x, loc.y);
+	var imgdaa = context.getImageData(loc.x-(wth/2), loc.y-(hht/2), wth, hht);
+	cntx.putImageData(imgdaa, loc.x-(wth/2), loc.y-(hht/2));
 	clearpage();
 	hideCanvass();
 	update_page_image();
