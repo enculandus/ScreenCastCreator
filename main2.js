@@ -384,3 +384,114 @@ async function hideCanvass() {
 }
 
 //notification opening and closing
+
+//Insert text function
+
+async function start_text_movement() {
+  tool_toggler();
+  canv3.addEventListener("touchstart", start_movement);
+  canv3.addEventListener("touchmove", movment);
+  canv3.addEventListener("touchend", stop_movement);
+  canv3.addEventListener("mousedown", start_movement);
+  canv3.addEventListener("mousemove", movment);
+  canv3.addEventListener("mouseup", stop_movement);
+  canv3.addEventListener("pointerdown", start_movement);
+  canv3.addEventListener("pointermove", movment);
+  canv3.addEventListener("pointerup", stop_movement);
+  canv3.width = window.innerWidth-20;
+  canv3.height = window.innerHeight-20;
+  canv3.style.opacity=1;
+  canv3.style.visibility='visible';
+//  document.getElementById('lines').style.backgroundColor = "#9392FF";
+//  document.getElementById('strokecolor').value = pstrokecolor;
+//  document.getElementById('strokewidth').value = pstrokewidth;
+  isTextOn=true;
+  //toggle_sidepanel();
+	txxt = document.getElementById('txt');
+	notifier_control('',"0%","0%","hidden");
+	notifier_control('<h5>Font Size:</h5><br><input id="fontsize"  value="30" type="range" min="1" max="120" placeholder="Example: 1"> <br> <button class="action" id="select_input_denial" onclick="textcancel()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="textsave()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
+	txxtsize = document.getElementById("fontsize").value;
+	txtsize = txxtsize+"px Verdana";
+	cntx3.fillStyle = document.getElementById('strokecolor').value;
+	cntx3.font = txtsize;
+	cntx3.fillText(txxt.value, canv3.width/2, canv3.height/2);
+
+}
+var txxt, txxtsize, txtsize;
+async function stop_text_movement() {
+	cntx3.clearRect(0,0,canv3.width,canv3.height);
+  canv3.width = 0;
+  canv3.height = 0;
+  canv3.style.opacity=0;
+  canv3.style.backgroundColor="";
+  canv3.style.visibility='hidden';
+  canv3.removeEventListener("touchstart", start_movement);
+  canv3.removeEventListener("touchmove", movment);
+  canv3.removeEventListener("touchend", stop_movement);
+  canv3.removeEventListener("mousedown", start_movement);
+  canv3.removeEventListener("mousemove", movment);
+  canv3.removeEventListener("mouseup", stop_movement);
+  canv3.removeEventListener("pointerdown", start_movement);
+  canv3.removeEventListener("pointermove", movment);
+  canv3.removeEventListener("pointerup", stop_movement);
+//  pstrokewidth = document.getElementById('strokewidth').value;
+//  pstrokecolor = document.getElementById('strokecolor').value;
+  isTextOn=false;
+	notifier_control('',"0%","0%","hidden");
+}
+
+async function start_movement(event) {
+  event.preventDefault();
+  locator(event);
+  controlPoint.x=loc.x; //used to store the initial point
+  controlPoint.y=loc.y;
+//  stroke_properties(cntx3);
+  strok =true;
+
+}
+
+async function movment(event) {
+  if (!strok){return;}
+/*  cntx3.clearRect(0,0,canv3.width,canv3.height);
+  cntx3.beginPath();
+  cntx3.moveTo(controlPoint.x,controlPoint.y); */
+	cntx3.clearRect(0,0,canv3.width,canv3.height);
+  locator(event);
+  //document.getElementById('toolscontainer').innerHTML = "X:" + loc.x +"   Y:" + loc.y ; //for testing
+	cntx3.fillStyle = document.getElementById('strokecolor').value;
+	txxtsize = document.getElementById("fontsize").value;
+	txtsize = txxtsize+"px Verdana";
+  cntx3.font = txtsize;
+  cntx3.fillText(txxt.value, loc.x, loc.y);
+}
+
+async function stop_movement() {
+  strok = false;  //turn off drawing, and immediately draw the current line to canvas1
+ // stroke_properties(cntx);
+ // update_page_image();
+}
+async function textsave() {
+	stop_text_movement();
+	cntx.fillStyle = document.getElementById('strokecolor').value;
+//	txxtsize = document.getElementById("fontsize").value;
+//	txtsize = txxtsize+"px Verdana";
+	cntx.font = txtsize;
+	cntx.fillText(txxt.value, loc.x, loc.y);
+	update_page_image();
+}
+
+async function textcancel() {
+	stop_text_movement();
+}
+
+async function start_text_input() {
+	notifier_control('<input type="text" id="txt"><br><br><button class="action" id="select_input_denial" onclick="stop_text_input()"><img id="icon" src="Cross.svg"></button><button class="action" id="select_input_confirm" onclick="start_text_movement()"><img id="icon" src="Check.svg"></button>',"0px","0px","visible");
+	document.getElementById("txt").focus();
+	tool_toggler();
+//	isTextOn = true;
+}
+
+async function stop_text_input() {
+	isTextOn=false
+	notifier_control('',"0%","0%","hidden");
+}
