@@ -94,7 +94,7 @@ async function track_stopper(mystream) {
 
 async function toggle_recording() {
   if(!audiostream){
-    document.getElementById('action10').disabled="true";
+    document.getElementById('action10').disabled=true;
   }
   else if (recorder.getState()=="recording") {
     recorder.pauseRecording();
@@ -134,7 +134,7 @@ async function share_screen() {
     if(confirm("You cannot stop screen recording and continue recording only the board once you begin. Both screen and board will be recored for the rest of the video.")){}
     else{toggle_recording(); return;}
     let mixer = recorder.getInternalRecorder().getMixer();
-    //mixer.releaseStreams();
+    //mixer.releaseStreams(); //causing recorder to stop and loose streams entirely
     screenstream = await navigator.mediaDevices.getDisplayMedia();
     //audiostream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true}});
     //track_stopper(videostream);
